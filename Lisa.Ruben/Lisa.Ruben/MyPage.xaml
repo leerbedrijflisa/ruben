@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Ruben.MyPage">
+    <ContentPage.Content>
+        <StackLayout>
+             <ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                  <StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="FillAndExpand" Padding="31,0,31,0"  x:Name="pictoTheek">
+                    <Button Clicked="OnPictoChoose" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" />
+                    <Button Clicked="OnPictoChoose" Image="alien.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" />
+                    <Button Clicked="OnPictoChoose" Image="levelup.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" />
+                    <Button Clicked="OnPictoChoose" Image="bloem.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" />
+                    <Button Clicked="OnPictoChoose" Image="mario.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" />
+                    <Button Clicked="OnPictoChoose" Image="chrome.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" />
+                    <Button Clicked="OnPictoChoose" Image="circle.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" />
+                </StackLayout>
+           </ScrollView>
+           <ScrollView Orientation="Horizontal">
+                <StackLayout Orientation = "Horizontal" HeightRequest="300" BackgroundColor="White">
+                    <StackLayout Orientation = "Horizontal" HeightRequest="300" BackgroundColor="Silver" x:Name="scrollSteps" Padding="31,0,31,0">
+                       <!-- dynamicly added buttons come here -->
+                   </StackLayout>
+                </StackLayout>
+           </ScrollView>
+           <StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100">
+                <Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="200" />
+                <Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="200" />
+                <Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
+            </StackLayout>
+           </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
