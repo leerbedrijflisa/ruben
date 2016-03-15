@@ -15,25 +15,25 @@ namespace Lisa.Ruben
 			InitializeComponent ();
 			NavigationPage.SetHasNavigationBar(this, false);
 		}
-
+       
 		//Creates a new Button and adds it to the scrollview
 		void AddNewStep(object sender, EventArgs args)
 		{
 			//Create a new button and set its values
-			Button b = new Button();
-			b.Clicked += OnStepSelect;
-			b.HeightRequest = 256;
-			b.WidthRequest = 300;
-			b.VerticalOptions = LayoutOptions.Center;
+			Button stepButton = new Button();
+            stepButton.Clicked += OnStepSelect;
+            stepButton.HeightRequest = 256;
+            stepButton.WidthRequest = 300;
+            stepButton.VerticalOptions = LayoutOptions.Center;
 
 			//If removing is enabled, set the text
 			if (removing) 
 			{
-				b.Text = "Tap to remove";
+                stepButton.Text = "Tap to remove";
 			}
 
 			//Add to the scrollview
-			scrollSteps.Children.Add (b);
+            scrollSteps.Children.Add (stepButton);
 		}
 
 		//Runs when the user taps on a step-button
@@ -49,9 +49,9 @@ namespace Lisa.Ruben
 				}
 
 				//Set the selectedButton to the current tapped button
-				Button b = (Button)sender;
-				b.Text = "Selected";
-				selectedButton = b;
+                Button stepButton = (Button)sender;
+                stepButton.Text = "Selected";
+                selectedButton = stepButton;
 			}
 			//If removing is enabled, remove the button from the scrollview
 			else
@@ -66,9 +66,9 @@ namespace Lisa.Ruben
 			//Get the image of the sending button and apply it to the selectedbutton in the stepView
 			if (sender is Button) 
 			{
-				Button b = (Button)sender;
-				FileImageSource img = b.Image;
-				selectedButton.Image = img;
+				Button stepButton = (Button)sender;
+                FileImageSource stepImage = stepButton.Image;
+                selectedButton.Image = stepImage;
 				selectedButton.Text = "";
 				selectedButton = new Button ();
 			}
@@ -87,9 +87,9 @@ namespace Lisa.Ruben
 				removeButton.Text = "Removing true";
 				removeButton.BackgroundColor = Color.Red;
 
-				foreach (Button but in scrollSteps.Children)
+				foreach (Button stepButton in scrollSteps.Children)
 				{
-					but.Text = "Click to remove";
+					stepButton.Text = "Click to remove";
 				}
 			}
 			else 
@@ -97,9 +97,9 @@ namespace Lisa.Ruben
 				removeButton.Text = "Removing false";
 				removeButton.BackgroundColor = Color.Default;
 
-				foreach (Button but in scrollSteps.Children)
+				foreach (Button stepButton in scrollSteps.Children)
 				{
-					but.Text = "";
+					stepButton.Text = "";
 				}
 			}
 		}
