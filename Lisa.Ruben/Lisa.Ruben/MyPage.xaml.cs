@@ -63,6 +63,13 @@ namespace Lisa.Ruben
 		//Runs when a user clicks one of the pictos
 		void OnPictoChoose(object sender, EventArgs args)
 		{
+            if (sender is Image)
+            {
+                Image pictoImage = (Image)sender;
+
+
+                pictoImage.Source = "levelup.jpg";
+            }
 			//Get the image of the sending button and apply it to the selectedbutton in the stepView
 			if (sender is Button) 
 			{
@@ -123,10 +130,10 @@ namespace Lisa.Ruben
 				return;
 
 			//Create a new image
-			Image i = new Image();
-			i.HeightRequest = 256;
-			i.WidthRequest = 300;
-			i.VerticalOptions = LayoutOptions.Center;
+			Image newPicto = new Image();
+            newPicto.HeightRequest = 256;
+            newPicto.WidthRequest = 300;
+            newPicto.VerticalOptions = LayoutOptions.Center;
 
 			//Set the image soure to the file the user just picked
 			var pickedImage = ImageSource.FromStream(() =>
@@ -136,11 +143,11 @@ namespace Lisa.Ruben
 					return stream;
 				}); 
 
-			i.Source = pickedImage;
+            newPicto.Source = pickedImage;
 
 			//Add a tapgesturerecognizer to the image
 			var tapGestureRecognizer = new TapGestureRecognizer();
-			i.GestureRecognizers.Add(tapGestureRecognizer);
+            newPicto.GestureRecognizers.Add(tapGestureRecognizer);
 			//handle the tap
 			tapGestureRecognizer.Tapped += (s, e) => 
 			{
@@ -148,9 +155,11 @@ namespace Lisa.Ruben
 			};
 
 			//Add the image to the pictotheek scrollview
-			pictoTheek.Children.Add (i);
+            pictoTheek.Children.Add (newPicto);
 		}
 
+
+        // Add new picto taken with the camera to the pictotheek
 		async void CreateNewPicto(object sender, EventArgs args)
 		{
 			await CrossMedia.Current.Initialize();
