@@ -8,7 +8,7 @@ namespace Lisa.Ruben
     public partial class MyPage : ContentPage
     {
 		bool removing;
-		Button selectedButton = new Button();
+		Image selectedImage = new Image();
 
 		public MyPage ()
 		{
@@ -19,39 +19,36 @@ namespace Lisa.Ruben
 		//Creates a new Button and adds it to the scrollview
 		void AddNewStep(object sender, EventArgs args)
 		{
-			//Create a new button and set its values
-			Button stepButton = new Button();
-            stepButton.Clicked += OnStepSelect;
-            stepButton.HeightRequest = 256;
-            stepButton.WidthRequest = 300;
-            stepButton.VerticalOptions = LayoutOptions.Center;
+			Image stepButton = new Image();
+
+			TapGestureRecognizer tap = new TapGestureRecognizer ();
+			tap.Tapped += OnStepSelect;
+
+			stepButton.GestureRecognizers.Add(tap) ;
+
+			stepButton.HeightRequest = 256;
+			stepButton.WidthRequest = 300;
+			stepButton.VerticalOptions = LayoutOptions.Center;
 
 			//If removing is enabled, set the text
 			if (removing) 
 			{
-                stepButton.Text = "Tap to remove";
+            //    stepButton.Text = "Tap to remove";
 			}
 
 			//Add to the scrollview
             scrollSteps.Children.Add (stepButton);
 		}
 
-		//Runs when the user taps on a step-button
 		void OnStepSelect(object sender, EventArgs args)
 		{
 			//If removing is disabled
 			if (!removing) 
 			{
-				//Clear the text of all buttons
-				foreach (Button but in scrollSteps.Children)
-				{
-					but.Text = "";
-				}
-
-				//Set the selectedButton to the current tapped button
-                Button stepButton = (Button)sender;
-                stepButton.Text = "Selected";
-                selectedButton = stepButton;
+				//Set the selectedImage to the current tapped button
+				Image stepButton = (Image)sender;
+	
+				selectedImage = stepButton;
 			}
 			//If removing is enabled, remove the button from the scrollview
 			else
@@ -67,18 +64,8 @@ namespace Lisa.Ruben
             {
                 Image pictoImage = (Image)sender;
 
-
-                pictoImage.Source = "levelup.jpg";
+				selectedImage.Source = pictoImage.Source;
             }
-			//Get the image of the sending button and apply it to the selectedbutton in the stepView
-			if (sender is Button) 
-			{
-				Button stepButton = (Button)sender;
-                FileImageSource stepImage = stepButton.Image;
-                selectedButton.Image = stepImage;
-				selectedButton.Text = "";
-				selectedButton = new Button ();
-			}
 		}
 
 		//Runs when the user taps the remove button
@@ -94,20 +81,15 @@ namespace Lisa.Ruben
 				removeButton.Text = "Removing true";
 				removeButton.BackgroundColor = Color.Red;
 
-				foreach (Button stepButton in scrollSteps.Children)
+				foreach (Image stepImg in scrollSteps.Children)
 				{
-					stepButton.Text = "Click to remove";
+					//stepImgstepImg.Text = "Click to remove";
 				}
 			}
 			else 
 			{
 				removeButton.Text = "Removing false";
 				removeButton.BackgroundColor = Color.Default;
-
-				foreach (Button stepButton in scrollSteps.Children)
-				{
-					stepButton.Text = "";
-				}
 			}
 		}
 
@@ -139,7 +121,7 @@ namespace Lisa.Ruben
 			var pickedImage = ImageSource.FromStream(() =>
 				{
 					var stream = file.GetStream();
-					file.Dispose();
+				//	file.Dispose();
 					return stream;
 				}); 
 
@@ -147,12 +129,8 @@ namespace Lisa.Ruben
 
 			//Add a tapgesturerecognizer to the image
 			var tapGestureRecognizer = new TapGestureRecognizer();
+			tapGestureRecognizer.Tapped += OnPictoChoose;
             newPicto.GestureRecognizers.Add(tapGestureRecognizer);
-			//handle the tap
-			tapGestureRecognizer.Tapped += (s, e) => 
-			{
-				//OnPictoChoose(i,e);
-			};
 
 			//Add the image to the pictotheek scrollview
             pictoTheek.Children.Add (newPicto);
@@ -190,9 +168,14 @@ namespace Lisa.Ruben
 			i.Source = ImageSource.FromStream(() =>
 				{
 					var stream = file.GetStream();
-					file.Dispose();
+					//file.Dispose();
 					return stream;
 				});
+
+			//Add a tapgesturerecognizer to the image
+			var tapGestureRecognizer = new TapGestureRecognizer();
+			tapGestureRecognizer.Tapped += OnPictoChoose;
+			i.GestureRecognizers.Add(tapGestureRecognizer);
 
 			pictoTheek.Children.Add (i);
 		}
