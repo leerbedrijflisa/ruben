@@ -30,12 +30,6 @@ namespace Lisa.Ruben
 			stepButton.WidthRequest = 300;
 			stepButton.VerticalOptions = LayoutOptions.Center;
 
-			//If removing is enabled, set the text
-			if (removing) 
-			{
-            //    stepButton.Text = "Tap to remove";
-			}
-
 			//Add to the scrollview
             scrollSteps.Children.Add (stepButton);
 		}
@@ -47,8 +41,32 @@ namespace Lisa.Ruben
 			{
 				//Set the selectedImage to the current tapped button
 				Image stepButton = (Image)sender;
-	
-				selectedImage = stepButton;
+				foreach (Image img in scrollSteps.Children) 
+				{
+					img.Opacity = 1;
+					img.BackgroundColor = Color.Transparent;
+				}
+
+				if ((Image)sender == selectedImage)
+				{
+					stepButton.Opacity = 1;
+					selectedImage = new Image ();
+				} 
+				else 
+				{
+					stepButton.Opacity = 0.5;
+					selectedImage = stepButton;
+
+					if (stepButton.Source == null) 
+					{
+						stepButton.BackgroundColor = Color.Green;
+					}
+					else 
+					{
+						stepButton.BackgroundColor = Color.Transparent;
+					}
+				}
+
 			}
 			//If removing is enabled, remove the button from the scrollview
 			else
@@ -65,6 +83,12 @@ namespace Lisa.Ruben
                 Image pictoImage = (Image)sender;
 
 				selectedImage.Source = pictoImage.Source;
+				selectedImage.BackgroundColor = Color.Transparent;
+
+				foreach (Image img in scrollSteps.Children) 
+				{
+					img.Opacity = 1;
+				}
             }
 		}
 
@@ -80,15 +104,10 @@ namespace Lisa.Ruben
 			{
 				removeButton.Text = "Removing true";
 				removeButton.BackgroundColor = Color.Red;
-
-				foreach (Image stepImg in scrollSteps.Children)
-				{
-					//stepImgstepImg.Text = "Click to remove";
-				}
 			}
 			else 
 			{
-				removeButton.Text = "Removing false";
+				removeButton.Text = "Remove Step";
 				removeButton.BackgroundColor = Color.Default;
 			}
 		}
