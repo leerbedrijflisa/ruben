@@ -19,31 +19,46 @@ namespace Lisa.Ruben
 		//Creates a new Button and adds it to the scrollview
 		void AddNewStep(object sender, EventArgs args)
 		{
-			Image stepButton = new Image();
+			StackLayout stack = new StackLayout ();
+			Image stepImage = new Image();
+			Label stepLabel = new Label ();
 
 			TapGestureRecognizer tap = new TapGestureRecognizer ();
 			tap.Tapped += OnStepSelect;
 
-			stepButton.GestureRecognizers.Add(tap) ;
+			stepImage.GestureRecognizers.Add(tap) ;
 
-			stepButton.HeightRequest = 256;
-			stepButton.WidthRequest = 300;
-			stepButton.VerticalOptions = LayoutOptions.Center;
+			stepImage.HeightRequest = 256;
+			stepImage.WidthRequest = 300;
+			stepImage.VerticalOptions = LayoutOptions.Center;
 
-			selectedImage = stepButton;
-			foreach (Image img in scrollSteps.Children) 
+			selectedImage = stepImage;
+//			foreach (Image img in scrollSteps.Children) 
+//			{
+//				img.Opacity = 1;
+//				img.BackgroundColor = Color.Transparent;
+//			}
+
+			foreach (StackLayout stack2 in scrollSteps.Children)
 			{
-				img.Opacity = 1;
-				img.BackgroundColor = Color.Transparent;
+				foreach (var child in stack2.Children) 
+				{
+					if (child is Image)
+					{
+						child.Opacity = 1;
+						child.BackgroundColor = Color.Transparent;
+					}	
+				}
 			}
 
 			selectedImage.Opacity = 0.5;
 			selectedImage.BackgroundColor = Color.White;
 
-
-
+			stepLabel.Text = "haloo";
+			stack.Children.Add (stepImage);
+			stack.Children.Add (stepLabel);
 			//Add to the scrollview
-            scrollSteps.Children.Add (stepButton);
+			scrollSteps.Children.Add (stack);
 		}
 
 		void OnStepSelect(object sender, EventArgs args)
@@ -53,10 +68,17 @@ namespace Lisa.Ruben
 			{
 				//Set the selectedImage to the current tapped button
 				Image stepButton = (Image)sender;
-				foreach (Image img in scrollSteps.Children) 
+
+				foreach (StackLayout stack in scrollSteps.Children)
 				{
-					img.Opacity = 1;
-					img.BackgroundColor = Color.Transparent;
+					foreach (var child in stack.Children) 
+					{
+						if (child is Image)
+						{
+							child.Opacity = 1;
+							child.BackgroundColor = Color.Transparent;
+						}	
+					}
 				}
 
 				if ((Image)sender == selectedImage)
@@ -71,14 +93,13 @@ namespace Lisa.Ruben
 
 					if (stepButton.Source == null) 
 					{
-						stepButton.BackgroundColor = Color.Green;
+						stepButton.BackgroundColor = Color.White;
 					}
 					else 
 					{
 						stepButton.BackgroundColor = Color.Transparent;
 					}
 				}
-
 			}
 			//If removing is enabled, remove the button from the scrollview
 			else
@@ -90,20 +111,21 @@ namespace Lisa.Ruben
 		//Runs when a user clicks one of the pictos
 		void OnPictoChoose(object sender, EventArgs args)
 		{
-            if (sender is Image)
-            {
-                Image pictoImage = (Image)sender;
+            Image pictoImage = (Image)sender;		
 
-				selectedImage.Source = pictoImage.Source;
-				selectedImage.BackgroundColor = Color.Transparent;
-				pictoImage = null;
-				GC.Collect ();
-
-				foreach (Image img in scrollSteps.Children) 
+			selectedImage.Source = pictoImage.Source;
+			selectedImage.BackgroundColor = Color.Transparent;
+			 
+			foreach (StackLayout stack in scrollSteps.Children)
+			{
+				foreach (var child in stack.Children) 
 				{
-					img.Opacity = 1;
+					if (child is Image)
+					{
+						child.Opacity = 1;
+					}	
 				}
-            }
+			}
 		}
 
 		//Runs when the user taps the remove button
@@ -145,7 +167,12 @@ namespace Lisa.Ruben
 				return;
 
 			//Create a new image
+			StackLayout stack = new StackLayout();
 			Image newPicto = new Image();
+			Label pictoLabel = new Label ();
+			pictoLabel.Text = "new picto test";
+			pictoLabel.BackgroundColor = Color.Black;
+			pictoLabel.TextColor = Color.White;
             newPicto.HeightRequest = 256;
             newPicto.WidthRequest = 300;
             newPicto.VerticalOptions = LayoutOptions.Center;
@@ -165,8 +192,11 @@ namespace Lisa.Ruben
 			tapGestureRecognizer.Tapped += OnPictoChoose;
             newPicto.GestureRecognizers.Add(tapGestureRecognizer);
 
+			stack.Children.Add (newPicto);
+			stack.Children.Add (pictoLabel);
+
 			//Add the image to the pictotheek scrollview
-            pictoTheek.Children.Add (newPicto);
+			pictoTheek.Children.Add (stack);
 		}
 
 
@@ -193,12 +223,17 @@ namespace Lisa.Ruben
 			await DisplayAlert("File Location", file.Path, "OK");
 
 			//Create a new image
-			Image i = new Image();
-			i.HeightRequest = 256;
-			i.WidthRequest = 300;
-			i.VerticalOptions = LayoutOptions.Center;
+			StackLayout stack = new StackLayout();
+			Image takenPhoto = new Image();
+			Label pictoLabel = new Label ();
+			pictoLabel.Text = "taken photo test";
+			pictoLabel.BackgroundColor = Color.Black;
+			pictoLabel.TextColor = Color.White;
+			takenPhoto.HeightRequest = 256;
+			takenPhoto.WidthRequest = 300;
+			takenPhoto.VerticalOptions = LayoutOptions.Center;
 
-			i.Source = ImageSource.FromStream(() =>
+			takenPhoto.Source = ImageSource.FromStream(() =>
 				{
 					var stream = file.GetStream();
 					//file.Dispose();
@@ -208,9 +243,12 @@ namespace Lisa.Ruben
 			//Add a tapgesturerecognizer to the image
 			var tapGestureRecognizer = new TapGestureRecognizer();
 			tapGestureRecognizer.Tapped += OnPictoChoose;
-			i.GestureRecognizers.Add(tapGestureRecognizer);
+			takenPhoto.GestureRecognizers.Add(tapGestureRecognizer);
 
-			pictoTheek.Children.Add (i);
+			stack.Children.Add (takenPhoto);
+			stack.Children.Add (pictoLabel);
+
+			pictoTheek.Children.Add (stack);
 		}
     }
 }

@@ -3,42 +3,63 @@
     <ContentPage.Content>
 		<StackLayout>
 		 	<ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand">
-	     		 <StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="FillAndExpand" Padding="31,0,31,0"  x:Name="pictoTheek">
-	        			<Image WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
+	     		 <StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="FillAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
+	     		 	<StackLayout>
+	        			<Image WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
-	        				<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
 	        				</Image.GestureRecognizers>
 	        			</Image>
-			        	<Image Source="alien.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
-	        				<Image.GestureRecognizers>
-	        				<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
-	        				</Image.GestureRecognizers>
-	        			</Image>
+        				<Label Text="test" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
+        			</StackLayout>
+        			<StackLayout>
+				       	<Image Source="alien.jpg" WidthRequest="300" HeightRequest="256"  VerticalOptions="Center">
+		       				<Image.GestureRecognizers>
+		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+		       				</Image.GestureRecognizers>
+		       			</Image>
+        				<Label Text="test" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />    			
+	        		</StackLayout>
+	        		<StackLayout>	
 	        			<Image Source="levelup.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
 	        				<Image.GestureRecognizers>
-	        				<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
 	        				</Image.GestureRecognizers>
 	        			</Image>
+	        			<Label Text="test" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
+	        		</StackLayout>
+	        		<StackLayout>
 	        			<Image Source="bloem.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
 	        				<Image.GestureRecognizers>
-	        				<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
 	        				</Image.GestureRecognizers>
 	        			</Image>
+	        			<Label Text="test" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
+	        		</StackLayout>
+	        		<StackLayout>
 	        			<Image Source="mario.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
-	        				<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
 	        				</Image.GestureRecognizers>
 	        			</Image>
+	        			<Label Text="test" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
+	        		</StackLayout>
+	        		<StackLayout>
 	        			<Image Source="chrome.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
-	        				<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
 	        				</Image.GestureRecognizers>
 	        			</Image>
+	        			<Label Text="test" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
+	        		</StackLayout>
+	        		<StackLayout>
 	        			<Image Source="circle.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
-	        				<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
 	        				</Image.GestureRecognizers>
 	        			</Image>
+	        			<Label Text="test" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
+	        		</StackLayout>
 	        	</StackLayout>
         	</ScrollView>
         	<ScrollView Orientation="Horizontal">
