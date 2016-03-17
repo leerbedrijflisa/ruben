@@ -30,6 +30,18 @@ namespace Lisa.Ruben
 			stepButton.WidthRequest = 300;
 			stepButton.VerticalOptions = LayoutOptions.Center;
 
+			selectedImage = stepButton;
+			foreach (Image img in scrollSteps.Children) 
+			{
+				img.Opacity = 1;
+				img.BackgroundColor = Color.Transparent;
+			}
+
+			selectedImage.Opacity = 0.5;
+			selectedImage.BackgroundColor = Color.White;
+
+
+
 			//Add to the scrollview
             scrollSteps.Children.Add (stepButton);
 		}
@@ -84,6 +96,8 @@ namespace Lisa.Ruben
 
 				selectedImage.Source = pictoImage.Source;
 				selectedImage.BackgroundColor = Color.Transparent;
+				pictoImage = null;
+				GC.Collect ();
 
 				foreach (Image img in scrollSteps.Children) 
 				{
