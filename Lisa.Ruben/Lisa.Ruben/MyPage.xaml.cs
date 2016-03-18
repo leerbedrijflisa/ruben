@@ -311,5 +311,15 @@ namespace Lisa.Ruben
 
 			pictoTheek.Children.Add (stack);
 		}
+
+		void Entry_TextChanged (object sender, TextChangedEventArgs e)
+		{
+			
+		}
+
+		void Entry_Completed (object sender, EventArgs e)
+		{
+			
+		}
     }
 }

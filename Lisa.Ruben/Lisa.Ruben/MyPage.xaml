@@ -1,81 +1,83 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Ruben.MyPage">
     <ContentPage.Content>
-		<StackLayout>
-		 	<ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand">
-	     		 <StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="FillAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
-	     		 	<StackLayout>
-	        			<Image WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
-	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
-	        				</Image.GestureRecognizers>
-	        			</Image>
-        				<Label Text="clear" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
-        			</StackLayout>
-        			<StackLayout>
-				       	<Image Source="alien.jpg" WidthRequest="300" HeightRequest="256"  VerticalOptions="Center">
-		       				<Image.GestureRecognizers>
-		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
-		       				</Image.GestureRecognizers>
-		       			</Image>
-        				<Label Text="alien" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />    			
-	        		</StackLayout>
-	        		<StackLayout>	
-	        			<Image Source="levelup.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
-	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
-	        				</Image.GestureRecognizers>
-	        			</Image>
-	        			<Label Text="level up" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
-	        		</StackLayout>
-	        		<StackLayout>
-	        			<Image Source="bloem.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
-	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
-	        				</Image.GestureRecognizers>
-	        			</Image>
-	        			<Label Text="bloem" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
-	        		</StackLayout>
-	        		<StackLayout>
-	        			<Image Source="mario.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
-	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
-	        				</Image.GestureRecognizers>
-	        			</Image>
-	        			<Label Text="mario" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
-	        		</StackLayout>
-	        		<StackLayout>
-	        			<Image Source="chrome.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
-	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
-	        				</Image.GestureRecognizers>
-	        			</Image>
-	        			<Label Text="chrome" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
-	        		</StackLayout>
-	        		<StackLayout>
-	        			<Image Source="circle.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
-	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
-	        				</Image.GestureRecognizers>
-	        			</Image>
-	        			<Label Text="circle" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" FontSize="20" />
-	        		</StackLayout>
-	        	</StackLayout>
-        	</ScrollView>
-        	<ScrollView Orientation="Horizontal">
-	        	<StackLayout Orientation = "Horizontal" HeightRequest="300" BackgroundColor="White">
-	        		<StackLayout Orientation = "Horizontal" HeightRequest="300" BackgroundColor="Silver" x:Name="scrollSteps" Padding="31,0,31,0">
-        				<!-- dynamicly added buttons come here -->
-        			</StackLayout>
-	        	</StackLayout>
-        	</ScrollView>
-        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100">
-	        	<Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="200" />
-        		<Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="200" />
-				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
-				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
-	        </StackLayout>
-   	 	</StackLayout>
+	    <ScrollView>
+			<StackLayout>
+			 	<ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand">
+		     		 <StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="FillAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
+		     		 	<StackLayout>
+		        			<Image WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
+		        				<Image.GestureRecognizers>
+		        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+		        				</Image.GestureRecognizers>
+		        			</Image>
+	        				<Entry Text="" BackgroundColor="Black" TextColor="White" VerticalOptions="Center"  />
+	        			</StackLayout>
+	        			<StackLayout>
+					       	<Image Source="alien.jpg" WidthRequest="300" HeightRequest="256"  VerticalOptions="Center">
+			       				<Image.GestureRecognizers>
+			       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+			       				</Image.GestureRecognizers>
+			       			</Image>
+	        				<Entry Text="" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" TextChanged="Entry_TextChanged" Completed="Entry_Completed" />    			
+		        		</StackLayout>
+		        		<StackLayout>	
+		        			<Image Source="levelup.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
+		        				<Image.GestureRecognizers>
+		        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+		        				</Image.GestureRecognizers>
+		        			</Image>
+		        			<Entry Text="" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" TextChanged="Entry_TextChanged" Completed="Entry_Completed" />
+		        		</StackLayout>
+		        		<StackLayout>
+		        			<Image Source="bloem.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
+		        				<Image.GestureRecognizers>
+		        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+		        				</Image.GestureRecognizers>
+		        			</Image>
+		        			<Entry Text="" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" TextChanged="Entry_TextChanged" Completed="Entry_Completed" />
+		        		</StackLayout>
+		        		<StackLayout>
+		        			<Image Source="mario.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
+		        				<Image.GestureRecognizers>
+		        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+		        				</Image.GestureRecognizers>
+		        			</Image>
+		        			<Entry Text="" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" TextChanged="Entry_TextChanged" Completed="Entry_Completed" />
+		        		</StackLayout>
+		        		<StackLayout>
+		        			<Image Source="chrome.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
+		        				<Image.GestureRecognizers>
+		        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+		        				</Image.GestureRecognizers>
+		        			</Image>
+		        			<Entry Text="" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" TextChanged="Entry_TextChanged" Completed="Entry_Completed" />
+		        		</StackLayout>
+		        		<StackLayout>
+		        			<Image Source="circle.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
+		        				<Image.GestureRecognizers>
+		        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+		        				</Image.GestureRecognizers>
+		        			</Image>
+		        			<Entry Text="" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" TextChanged="Entry_TextChanged" Completed="Entry_Completed" />
+		        		</StackLayout>
+		        	</StackLayout>
+	        	</ScrollView>
+	        	<ScrollView Orientation="Horizontal">
+		        	<StackLayout Orientation = "Horizontal" HeightRequest="300" BackgroundColor="White">
+		        		<StackLayout Orientation = "Horizontal" HeightRequest="300" BackgroundColor="Silver" x:Name="scrollSteps" Padding="31,0,31,0">
+	        				<!-- dynamicly added buttons come here -->
+	        			</StackLayout>
+		        	</StackLayout>
+	        	</ScrollView>
+	        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100">
+		        	<Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="200" />
+	        		<Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="200" />
+					<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
+					<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
+		        </StackLayout>
+	   	 	</StackLayout>
+   	 	</ScrollView>
 	</ContentPage.Content>
 </ContentPage>
 
