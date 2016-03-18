@@ -9,6 +9,7 @@ namespace Lisa.Ruben
     {
 		bool removing;
 		Image selectedImage = new Image();
+		Label selectedLabel = new Label();
 
 		public MyPage ()
 		{
@@ -19,7 +20,7 @@ namespace Lisa.Ruben
 		//Creates a new Button and adds it to the scrollview
 		void AddNewStep(object sender, EventArgs args)
 		{
-			StackLayout stack = new StackLayout ();
+			StackLayout newStack = new StackLayout ();
 			Image stepImage = new Image();
 			Label stepLabel = new Label ();
 
@@ -33,15 +34,11 @@ namespace Lisa.Ruben
 			stepImage.VerticalOptions = LayoutOptions.Center;
 
 			selectedImage = stepImage;
-//			foreach (Image img in scrollSteps.Children) 
-//			{
-//				img.Opacity = 1;
-//				img.BackgroundColor = Color.Transparent;
-//			}
+			selectedLabel = stepLabel;
 
-			foreach (StackLayout stack2 in scrollSteps.Children)
+			foreach (StackLayout stack in scrollSteps.Children)
 			{
-				foreach (var child in stack2.Children) 
+				foreach (var child in stack.Children) 
 				{
 					if (child is Image)
 					{
@@ -54,21 +51,52 @@ namespace Lisa.Ruben
 			selectedImage.Opacity = 0.5;
 			selectedImage.BackgroundColor = Color.White;
 
-			stepLabel.Text = "haloo";
-			stack.Children.Add (stepImage);
-			stack.Children.Add (stepLabel);
+			stepLabel.Text = "";
+			stepLabel.BackgroundColor = Color.Black;
+			stepLabel.TextColor = Color.White;
+
+			newStack.Children.Add (stepImage);
+			newStack.Children.Add (stepLabel);
+
 			//Add to the scrollview
-			scrollSteps.Children.Add (stack);
+			scrollSteps.Children.Add (newStack);
 		}
 
 		void OnStepSelect(object sender, EventArgs args)
 		{
+			//Set the selectedImage to the current tapped button and create a label and layout for it
+			Image stepButton = (Image)sender;
+			Label stepLabel = new Label ();
+			StackLayout currentStack = new StackLayout();
+
+			//find the current stacklayout in the step scrollview that contains the sender image
+			foreach (StackLayout stacklayout in scrollSteps.Children)
+			{
+				foreach (var item in stacklayout.Children) 
+				{
+					if (item is Image) 
+					{
+						if (item == (Image)sender) 
+						{
+							currentStack = (StackLayout)stacklayout;
+						}
+					}
+				}
+			}
+
 			//If removing is disabled
 			if (!removing) 
 			{
-				//Set the selectedImage to the current tapped button
-				Image stepButton = (Image)sender;
+				//find the label that belongs to the image
+				foreach (var item in currentStack.Children) 
+				{
+					if (item is Label) 
+					{
+						stepLabel = (Label)item;
+					}
+				}
 
+				//set opacity of all images back to 1
 				foreach (StackLayout stack in scrollSteps.Children)
 				{
 					foreach (var child in stack.Children) 
@@ -80,16 +108,18 @@ namespace Lisa.Ruben
 						}	
 					}
 				}
-
+				//when you tap the selectedbutton when it is already selected, unselect it
 				if ((Image)sender == selectedImage)
 				{
 					stepButton.Opacity = 1;
 					selectedImage = new Image ();
+					selectedLabel = new Label ();
 				} 
 				else 
 				{
 					stepButton.Opacity = 0.5;
 					selectedImage = stepButton;
+					selectedLabel = stepLabel;
 
 					if (stepButton.Source == null) 
 					{
@@ -104,18 +134,44 @@ namespace Lisa.Ruben
 			//If removing is enabled, remove the button from the scrollview
 			else
 			{
-				scrollSteps.Children.Remove ((View)sender);
+				scrollSteps.Children.Remove(currentStack);
 			}
 		}
 
 		//Runs when a user clicks one of the pictos
 		void OnPictoChoose(object sender, EventArgs args)
 		{
-            Image pictoImage = (Image)sender;		
+			//store the sender image
+			StackLayout currentstack = new StackLayout();
+            Image pictoImage = (Image)sender;
+			Label pictoLabel = new Label ();
 
+			foreach (StackLayout stacklayout in pictoTheek.Children)
+			{
+				foreach (var item in stacklayout.Children)
+				{
+					if (item is Image && item == (Image)sender) 
+					{
+						currentstack = stacklayout;
+					}
+				}
+			}
+
+			foreach (var item in currentstack.Children)
+			{
+				if (item is Label) 
+				{
+					pictoLabel = (Label)item;
+				}
+			}
+
+			//set the selected image to the stored image
 			selectedImage.Source = pictoImage.Source;
 			selectedImage.BackgroundColor = Color.Transparent;
+
+			selectedLabel.Text = pictoLabel.Text;
 			 
+			//set opcities on all images back to 1
 			foreach (StackLayout stack in scrollSteps.Children)
 			{
 				foreach (var child in stack.Children) 
@@ -126,6 +182,8 @@ namespace Lisa.Ruben
 					}	
 				}
 			}
+			selectedImage = new Image ();
+			selectedLabel = new Label ();
 		}
 
 		//Runs when the user taps the remove button
@@ -170,10 +228,12 @@ namespace Lisa.Ruben
 			StackLayout stack = new StackLayout();
 			Image newPicto = new Image();
 			Label pictoLabel = new Label ();
+
 			pictoLabel.Text = "new picto test";
 			pictoLabel.BackgroundColor = Color.Black;
 			pictoLabel.TextColor = Color.White;
-            newPicto.HeightRequest = 256;
+            
+			newPicto.HeightRequest = 256;
             newPicto.WidthRequest = 300;
             newPicto.VerticalOptions = LayoutOptions.Center;
 
@@ -181,7 +241,7 @@ namespace Lisa.Ruben
 			var pickedImage = ImageSource.FromStream(() =>
 				{
 					var stream = file.GetStream();
-				//	file.Dispose();
+					//file.Dispose();
 					return stream;
 				}); 
 
@@ -198,7 +258,6 @@ namespace Lisa.Ruben
 			//Add the image to the pictotheek scrollview
 			pictoTheek.Children.Add (stack);
 		}
-
 
         // Add new picto taken with the camera to the pictotheek
 		async void CreateNewPicto(object sender, EventArgs args)
@@ -222,13 +281,15 @@ namespace Lisa.Ruben
 
 			await DisplayAlert("File Location", file.Path, "OK");
 
-			//Create a new image
+			//Create a new stacklayout to hold the new image and label
 			StackLayout stack = new StackLayout();
 			Image takenPhoto = new Image();
 			Label pictoLabel = new Label ();
+
 			pictoLabel.Text = "taken photo test";
 			pictoLabel.BackgroundColor = Color.Black;
 			pictoLabel.TextColor = Color.White;
+
 			takenPhoto.HeightRequest = 256;
 			takenPhoto.WidthRequest = 300;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
