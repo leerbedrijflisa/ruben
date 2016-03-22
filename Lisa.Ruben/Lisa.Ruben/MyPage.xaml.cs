@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
 using Plugin.Media;
 
@@ -9,7 +10,6 @@ namespace Lisa.Ruben
     {
 		bool removing;
 		Image selectedImage = new Image();
-		public static Image chosenPicto = new Image();
 
 		PictotheekPage pictotheek = new PictotheekPage();
 
@@ -41,7 +41,7 @@ namespace Lisa.Ruben
 			stepLabel.TextColor = Color.White;
 
 			newStack.Children.Add (stepImage);
-			//newStack.Children.Add (stepLabel);
+			newStack.Children.Add (stepLabel);
 
 			//Add to the scrollview
 			scrollSteps.Children.Add (newStack);
@@ -81,16 +81,17 @@ namespace Lisa.Ruben
 			}
 		}
 
-		public void SetImage()
+		//set the image chosen in the pictotheek
+		public void SetImage(Image img)
 		{
 			foreach (StackLayout child in scrollSteps.Children) 
 			{
-				foreach (Image item in child.Children) 
+				foreach (Image item in child.Children.OfType<Image>()) 
 				{
 					if (item == selectedImage) 
 					{
 						item.BackgroundColor = Color.Transparent;
-						item.Source = chosenPicto.Source;	
+						item.Source = img.Source;	
 					}
 				}
 			}

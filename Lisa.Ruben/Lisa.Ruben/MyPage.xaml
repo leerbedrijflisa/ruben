@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Ruben.MyPage">
     <ContentPage.Content>
-		<StackLayout>
-        	<ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand">
-	        	<StackLayout Orientation = "Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="White">
-	        		<StackLayout Orientation = "Horizontal" BackgroundColor="Transparent" x:Name="scrollSteps" Padding="31,0,31,0"  VerticalOptions="Center">
-        				<!-- dynamicly added buttons come here -->
-        			</StackLayout>
+			<StackLayout>
+	        	<ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand">
+		        	<StackLayout Orientation = "Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="White">
+		        		<StackLayout Orientation = "Horizontal" BackgroundColor="Transparent" x:Name="scrollSteps" Padding="31,0,31,0"  VerticalOptions="Center">
+	        				<!-- dynamicly added images come here -->
+	        			</StackLayout>
+		        	</StackLayout>
+	        	</ScrollView>
+	        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100" >
+		        	<Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="200" />
+	        		<Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="200" />
 	        	</StackLayout>
-        	</ScrollView>
-        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100" >
-	        	<Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="200" />
-        		<Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="200" />
-        	</StackLayout>
-   	 	</StackLayout>
+	   	 	</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

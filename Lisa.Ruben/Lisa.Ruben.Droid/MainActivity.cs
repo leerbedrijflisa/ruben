@@ -9,7 +9,9 @@ using Android.OS;
 
 namespace Lisa.Ruben.Droid
 {
-    [Activity(Label = "Lisa.Ruben", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Lisa.Ruben", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+	 //lock screen orientation
+	 ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -21,4 +23,3 @@ namespace Lisa.Ruben.Droid
         }
     }
 }
-

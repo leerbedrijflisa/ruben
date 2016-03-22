@@ -8,8 +8,6 @@ namespace Lisa.Ruben
 {
 	public partial class PictotheekPage : ContentPage
 	{
-		public Image chosenImage = new Image();
-
 		public PictotheekPage ()
 		{
 			InitializeComponent ();
@@ -19,11 +17,10 @@ namespace Lisa.Ruben
 		//Runs when a user clicks one of the pictos
 		void OnPictoChoose(object sender, EventArgs args)
 		{
-			chosenImage = (Image)sender;
-			MyPage.chosenPicto = chosenImage;
+			Image chosenImage = (Image)sender;
 
-			MyPage page = (MyPage)Navigation.NavigationStack [0];
-			page.SetImage ();
+			MyPage stepPage = (MyPage)Navigation.NavigationStack [0];
+			stepPage.SetImage (chosenImage);
 
 			Navigation.PopAsync ();
 		}
@@ -46,18 +43,20 @@ namespace Lisa.Ruben
 			if (file == null)
 				return;
 
-			//Create a new image
+			//create new stacklayout to hold the image and label
 			StackLayout stack = new StackLayout();
-			Image newPicto = new Image();
-			Label pictoLabel = new Label ();
 
+			//Create the new image
+			Image newPicto = new Image();
+			newPicto.HeightRequest = 256;
+			newPicto.WidthRequest = 300;
+			newPicto.VerticalOptions = LayoutOptions.Center;
+            
+			//Create the new label
+			Label pictoLabel = new Label ();
 			pictoLabel.Text = "new picto test";
 			pictoLabel.BackgroundColor = Color.Black;
 			pictoLabel.TextColor = Color.White;
-            
-			newPicto.HeightRequest = 256;
-            newPicto.WidthRequest = 300;
-            newPicto.VerticalOptions = LayoutOptions.Center;
 
 			//Set the image soure to the file the user just picked
 			var pickedImage = ImageSource.FromStream(() =>
@@ -74,10 +73,11 @@ namespace Lisa.Ruben
 			tapGestureRecognizer.Tapped += OnPictoChoose;
             newPicto.GestureRecognizers.Add(tapGestureRecognizer);
 
+			//add the image and label to the stacklayout
 			stack.Children.Add (newPicto);
 			stack.Children.Add (pictoLabel);
 
-			//Add the image to the pictotheek scrollview
+			//Add the stacklayout to the pictotheek scrollview
 			pictoTheek.Children.Add (stack);
 		}
 
