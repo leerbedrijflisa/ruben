@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Plugin.Media;
-
 using Xamarin.Forms;
 
 namespace Lisa.Ruben
@@ -17,11 +17,34 @@ namespace Lisa.Ruben
 		//Runs when a user clicks one of the pictos
 		void OnPictoChoose(object sender, EventArgs args)
 		{
+			//create the new image and entry and the stacklayout to hold them
 			Image chosenImage = (Image)sender;
+			Entry chosenLabel = new Entry ();
+			StackLayout currentStack = new StackLayout ();
 
+			//find the stacklayout that holds the chosen image and store in currentStack, we need this to find the correct label
+			foreach (StackLayout stack in pictoTheek.Children) 
+			{
+				foreach (var child in stack.Children.OfType<Image>()) 
+				{
+					if (child == chosenImage) 
+					{
+						currentStack = stack;
+					}
+				}
+			}
+
+			//find the entry that belongs to the image in the currentStack and store it in chosenLabel
+			foreach (var child in currentStack.Children.OfType<Entry>()) 
+			{
+				chosenLabel = child;
+			}
+
+			//find the root page at the top of the navigationStack
 			MyPage stepPage = (MyPage)Navigation.NavigationStack [0];
-			stepPage.SetImage (chosenImage);
-
+			//set the image and label with the method on the steppage using the chosenImage and chosenLabel
+			stepPage.SetImageAndLabel (chosenImage, chosenLabel);
+			//close the pictotheek
 			Navigation.PopAsync ();
 		}
 
@@ -53,7 +76,7 @@ namespace Lisa.Ruben
 			newPicto.VerticalOptions = LayoutOptions.Center;
             
 			//Create the new label
-			Label pictoLabel = new Label ();
+			Entry pictoLabel = new Entry ();
 			pictoLabel.Text = "new picto test";
 			pictoLabel.BackgroundColor = Color.Black;
 			pictoLabel.TextColor = Color.White;
@@ -86,12 +109,14 @@ namespace Lisa.Ruben
 		{
 			await CrossMedia.Current.Initialize();
 
+			//Check if the device can take pictures
 			if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
 			{
 				await DisplayAlert("No Camera", ":( No camera available.", "OK");
 				return;
 			}
 
+			//Wait for the user to take his picture
 			var file = await CrossMedia.Current.TakePhotoAsync (new Plugin.Media.Abstractions.StoreCameraMediaOptions {
 				Directory = "Ruben",
 				Name = "test.jpg",
@@ -101,21 +126,24 @@ namespace Lisa.Ruben
 			if (file == null)
 				return;
 
-			await DisplayAlert("File Location", file.Path, "OK");
+			//await DisplayAlert("File Location", file.Path, "OK");
 
-			//Create a new stacklayout to hold the new image and label
+			//create the new image and entry and the stacklayout to hold them
 			StackLayout stack = new StackLayout();
 			Image takenPhoto = new Image();
-			Label pictoLabel = new Label ();
+			Entry pictoLabel = new Entry ();
 
+			//settings for the label
 			pictoLabel.Text = "taken photo test";
 			pictoLabel.BackgroundColor = Color.Black;
 			pictoLabel.TextColor = Color.White;
 
+			//settings for the image
 			takenPhoto.HeightRequest = 256;
 			takenPhoto.WidthRequest = 300;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
 
+			//Set the image soure to the file the user just picked
 			takenPhoto.Source = ImageSource.FromStream(() =>
 				{
 					var stream = file.GetStream();
@@ -128,9 +156,11 @@ namespace Lisa.Ruben
 			tapGestureRecognizer.Tapped += OnPictoChoose;
 			takenPhoto.GestureRecognizers.Add(tapGestureRecognizer);
 
+			//add the image and label to the stacklayout
 			stack.Children.Add (takenPhoto);
 			stack.Children.Add (pictoLabel);
 
+			//Add the stacklayout to the pictotheek scrollview
 			pictoTheek.Children.Add (stack);
 		}
 	}

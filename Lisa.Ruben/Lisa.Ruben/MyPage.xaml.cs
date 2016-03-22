@@ -22,23 +22,27 @@ namespace Lisa.Ruben
 		//Creates a new Button and adds it to the scrollview
 		void AddNewStep(object sender, EventArgs args)
 		{
+			//create the new image and label and the stacklayout to hold them
 			StackLayout newStack = new StackLayout ();
 			Image stepImage = new Image();
 			Label stepLabel = new Label ();
 
+			//Add a tapgesturerecognizer to the image
 			TapGestureRecognizer tap = new TapGestureRecognizer ();
 			tap.Tapped += OnStepSelect;
-
 			stepImage.GestureRecognizers.Add(tap) ;
 
+			//settings for the image
 			stepImage.BackgroundColor = Color.Silver;
 			stepImage.HeightRequest = 256;
 			stepImage.WidthRequest = 300;
-			//stepImage.VerticalOptions = LayoutOptions.Center;
 
+			//settings for the label
 			stepLabel.Text = "";
 			stepLabel.BackgroundColor = Color.Black;
 			stepLabel.TextColor = Color.White;
+			//geeft warning maar HorizontalTextAlign werkt niet op android (MissingMethodException)
+			stepLabel.XAlign = TextAlignment.Center;
 
 			newStack.Children.Add (stepImage);
 			newStack.Children.Add (stepLabel);
@@ -81,18 +85,30 @@ namespace Lisa.Ruben
 			}
 		}
 
-		//set the image chosen in the pictotheek
-		public void SetImage(Image img)
+		//set the image and label chosen in the pictotheek
+		public void SetImageAndLabel(Image pictotheekImg, Entry pictptheelLabel)
 		{
+			//create stacklayout as placeholder to find the Label
+			StackLayout currentStack = new StackLayout();
+
+			//find the currentstack by looking for the selectedimage in the scrollsteps,
 			foreach (StackLayout child in scrollSteps.Children) 
 			{
+				//set the selected image to the image chosen in the pictotheek
 				foreach (Image item in child.Children.OfType<Image>()) 
 				{
 					if (item == selectedImage) 
 					{
+						currentStack = child;
 						item.BackgroundColor = Color.Transparent;
-						item.Source = img.Source;	
+						item.Source = pictotheekImg.Source;	
 					}
+				}
+
+				//find the label that belongs to the selectedimage in the currentStack and set the text
+				foreach (Label label in currentStack.Children.OfType<Label>()) 
+				{
+					label.Text = pictptheelLabel.Text;
 				}
 			}
 		}
