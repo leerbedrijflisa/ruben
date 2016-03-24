@@ -10,8 +10,8 @@
 		        	</StackLayout>
 	        	</ScrollView>
 	        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100" >
-		        	<Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="200" />
-	        		<Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="200" />
+		        	<Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="200"/>
+	        		<Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="200"/>
 	        	</StackLayout>
 	   	 	</StackLayout>
 	</ContentPage.Content>

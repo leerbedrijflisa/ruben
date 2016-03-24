@@ -43,6 +43,7 @@
     <Compile Include="PictotheekPage.xaml.cs">
       <DependentUpon>PictotheekPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ISaveLoad.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.Media, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null">

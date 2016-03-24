@@ -1,71 +1,71 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Ruben.PictotheekPage">
 	<ContentPage.Content>
-	<StackLayout>
-		<ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-	     		 <StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="CenterAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
-	     		 	<StackLayout>
+		<StackLayout>
+			<ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+     			<StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="CenterAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
+     		 		<StackLayout>
 	        			<Image WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-        				<Entry Text="clear" BackgroundColor="Black" TextColor="White" VerticalOptions="Center"  />
-        			</StackLayout>
-        			<StackLayout>
+	    				<Entry Text="clear" BackgroundColor="Black" TextColor="White" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
+	    			</StackLayout>
+	    			<StackLayout>
 				       	<Image Source="alien.jpg" WidthRequest="300" HeightRequest="256"  VerticalOptions="Center">
 		       				<Image.GestureRecognizers>
-		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 		       				</Image.GestureRecognizers>
 		       			</Image>
-        				<Entry Text="alien" BackgroundColor="Black" TextColor="White" VerticalOptions="Center"  />    			
+	    				<Entry Text="alien" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>    			
 	        		</StackLayout>
 	        		<StackLayout>	
 	        			<Image Source="levelup.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
 	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="level up" BackgroundColor="Black" TextColor="White" VerticalOptions="Center"  />
+	        			<Entry Text="level up" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="bloem.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
 	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="bloem" BackgroundColor="Black" TextColor="White" VerticalOptions="Center"  />
+	        			<Entry Text="bloem" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="mario.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="mario" BackgroundColor="Black" TextColor="White" VerticalOptions="Center"  />
+	        			<Entry Text="mario" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="chrome.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="chrome" BackgroundColor="Black" TextColor="White" VerticalOptions="Center"  />
+	        			<Entry Text="chrome" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="circle.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose" />
+	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="circle" BackgroundColor="Black" TextColor="White" VerticalOptions="Center"  />
-	        		</StackLayout>
-	        	</StackLayout>
-        	</ScrollView>
-        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100" >
+        			<Entry Text="circle" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
+        			</StackLayout>
+        		</StackLayout>
+    		</ScrollView>
+        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100" x:Name="buttonBar">
 				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
 				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
 	        </StackLayout>
-	    </StackLayout>
+	   	</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

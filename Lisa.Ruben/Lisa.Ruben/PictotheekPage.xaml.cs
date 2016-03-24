@@ -163,5 +163,15 @@ namespace Lisa.Ruben
 			//Add the stacklayout to the pictotheek scrollview
 			pictoTheek.Children.Add (stack);
 		}
+
+		void OnEntryFocus(object sender, EventArgs args)
+		{
+			buttonBar.IsVisible = false;
+		}
+
+		void OnEntryUnfocused(object sender, EventArgs args)
+		{
+			buttonBar.IsVisible = true;
+		}
 	}
 }
