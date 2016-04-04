@@ -26,6 +26,8 @@ namespace Lisa.Ruben.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::Lisa.Ruben.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::Lisa.Ruben.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Lisa.Ruben.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -2476,6 +2478,12 @@ namespace Lisa.Ruben.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f05001f
+			public const int ApplicationName = 2131034143;
+			
+			// aapt resource value: 0x7f05001e
+			public const int Hello = 2131034142;
 			
 			// aapt resource value: 0x7f05000b
 			public const int abc_action_bar_home_description = 2131034123;

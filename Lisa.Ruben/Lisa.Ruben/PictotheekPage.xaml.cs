@@ -9,10 +9,13 @@ namespace Lisa.Ruben
 	public partial class PictotheekPage : ContentPage
 	{
 		bool removing;
+		public PictotheekDB database;
 
 		public PictotheekPage ()
 		{
 			InitializeComponent ();
+			database = new PictotheekDB ();
+			GetImagesFromDB ();
 			//NavigationPage.SetHasNavigationBar(this, false);
 		}
 
@@ -122,6 +125,11 @@ namespace Lisa.Ruben
 
             newPicto.Source = pickedImage;
 
+			//add the picto to the database
+			Picto p = new Picto ();
+			p.Name = file.Path;
+			database.AddPicto (p);
+
 			//Add a tapgesturerecognizer to the image
 			var tapGestureRecognizer = new TapGestureRecognizer();
 			tapGestureRecognizer.Tapped += OnPictoChoose;
@@ -209,6 +217,45 @@ namespace Lisa.Ruben
 				removePictoButton.Text = "Removing False";
 				removePictoButton.BackgroundColor = Color.Default;
 			}
+		}
+
+		void GetImagesFromDB()
+		{
+			List<Picto> allImages = (List<Picto>)database.GetAllPictos (); 
+
+			foreach (var item in allImages) 
+			{
+				//create new stacklayout to hold the image and label
+				StackLayout stack = new StackLayout();
+				
+				//Create the new image
+				Image newPicto = new Image();
+				newPicto.HeightRequest = 256;
+				newPicto.WidthRequest = 300;
+				newPicto.VerticalOptions = LayoutOptions.Center;
+				
+				//Create the new label
+				Entry pictoLabel = new Entry ();
+				pictoLabel.Text = "new picto database test";
+				pictoLabel.BackgroundColor = Color.Black;
+				pictoLabel.TextColor = Color.White;
+				
+				
+				newPicto.Source = item.Name;
+				
+				//Add a tapgesturerecognizer to the image
+				var tapGestureRecognizer = new TapGestureRecognizer();
+				tapGestureRecognizer.Tapped += OnPictoChoose;
+				newPicto.GestureRecognizers.Add(tapGestureRecognizer);
+				
+				//add the image and label to the stacklayout
+				stack.Children.Add (newPicto);
+				stack.Children.Add (pictoLabel);
+				
+				//Add the stacklayout to the pictotheek scrollview
+				pictoTheek.Children.Add (stack);
+			}
+
 		}
 
 		void OnEntryFocus(object sender, EventArgs args)

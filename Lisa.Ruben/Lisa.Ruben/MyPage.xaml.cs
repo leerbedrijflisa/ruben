@@ -8,12 +8,15 @@ namespace Lisa.Ruben
     {
 		bool removing;
 		Image selectedImage = new Image();
+		public PictotheekDB database;
 
 		PictotheekPage pictotheek = new PictotheekPage();
 
 		public MyPage ()
 		{
 			InitializeComponent ();
+			database = new PictotheekDB ();
+			//database.DeleteAllPictos ();
 			//NavigationPage.SetHasNavigationBar(this, false);
 		}
 
