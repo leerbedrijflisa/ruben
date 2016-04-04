@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -10,8 +9,8 @@ using Android.OS;
 namespace Lisa.Ruben.Droid
 {
     [Activity(Label = "Lisa.Ruben", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
-	 //lock screen orientation
-	 ScreenOrientation = ScreenOrientation.Landscape)]
+	 //lock screen orientation to landscape only
+		ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Ruben.PictotheekPage">
 	<ContentPage.Content>
 		<StackLayout>
-			<ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+			<ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand" x:Name="pictoScroll">
      			<StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="CenterAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
      		 		<StackLayout>
 	        			<Image WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
@@ -65,6 +65,7 @@
         	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100" x:Name="buttonBar">
 				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
 				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
+				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="150" HeightRequest="128" VerticalOptions="Center" x:Name="removePictoButton"/>
 	        </StackLayout>
 	   	</StackLayout>
 	</ContentPage.Content>

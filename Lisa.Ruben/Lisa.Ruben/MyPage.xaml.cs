@@ -75,6 +75,9 @@ namespace Lisa.Ruben
 			if (removing) 
 			{
 				scrollSteps.Children.Remove(currentStack);
+				removing = false;
+				removeButton.BackgroundColor = Color.Default;
+				removeButton.Text = "Remove Step"; 
 			}
 			//If removing is disabled open the pictotheek to choose a picture
 			else
@@ -83,7 +86,7 @@ namespace Lisa.Ruben
 			}
 		}
 
-		//set the image and label chosen in the pictotheek
+		//sets the image and label chosen in the pictotheek
 		public void SetImageAndLabel(Image pictotheekImg, Entry pictptheelLabel)
 		{
 			//create stacklayout as placeholder to find the Label
@@ -118,7 +121,7 @@ namespace Lisa.Ruben
 			removing = !removing;
 			Button removeButton = (Button)sender;
 
-			//If removing is enabled, change the text and backgroundcolor according to the value and update all button texts
+			//If removing is enabled, change the text and backgroundcolor according to the value
 			if (removing) 
 			{
 				removeButton.Text = "Removing true";
