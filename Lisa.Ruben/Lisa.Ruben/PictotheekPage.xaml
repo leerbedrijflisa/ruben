@@ -4,21 +4,13 @@
 		<StackLayout>
 			<ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand" x:Name="pictoScroll">
      			<StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="CenterAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
-     		 		<StackLayout>
-	        			<Image WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
-	        				<Image.GestureRecognizers>
-	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
-	        				</Image.GestureRecognizers>
-	        			</Image>
-	    				<Entry Text="clear" BackgroundColor="Black" TextColor="White" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
-	    			</StackLayout>
 	    			<StackLayout>
 				       	<Image Source="alien.jpg" WidthRequest="300" HeightRequest="256"  VerticalOptions="Center">
 		       				<Image.GestureRecognizers>
 		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 		       				</Image.GestureRecognizers>
 		       			</Image>
-	    				<Entry Text="alien" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>    			
+	    				<Label Text="alien" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center" />    			
 	        		</StackLayout>
 	        		<StackLayout>	
 	        			<Image Source="levelup.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
@@ -26,7 +18,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="level up" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
+	        			<Label Text="level up" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="bloem.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
@@ -34,7 +26,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="bloem" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
+	        			<Label Text="bloem" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="mario.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
@@ -42,7 +34,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="mario" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
+	        			<Label Text="mario" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="chrome.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
@@ -50,7 +42,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="chrome" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
+	        			<Label Text="chrome" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center" />
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="circle.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
@@ -58,7 +50,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-        			<Entry Text="circle" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" Focused="OnEntryFocus" Completed="OnEntryUnfocused"/>
+        			<Label Text="circle" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
         			</StackLayout>
         		</StackLayout>
     		</ScrollView>
@@ -66,6 +58,7 @@
 				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
 				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
 				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="150" HeightRequest="128" VerticalOptions="Center" x:Name="removePictoButton"/>
+				<Button Text = "Remove Database" Clicked="OnDeleteAll" WidthRequest="150" HeightRequest="128" VerticalOptions="Center" />
 	        </StackLayout>
 	   	</StackLayout>
 	</ContentPage.Content>

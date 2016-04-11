@@ -10,6 +10,8 @@ namespace Lisa.Ruben
 	{
 		bool removing;
 		public PictotheekDB database;
+		public static Label placeholdLabel;
+		public static string labelText;
 
 		public PictotheekPage ()
 		{
@@ -26,7 +28,7 @@ namespace Lisa.Ruben
 			{
 				//create the new image and entry and the stacklayout to hold them
 				Image chosenImage = (Image)sender;
-				Entry chosenLabel = new Entry ();
+				Label chosenLabel = new Label ();
 				StackLayout currentStack = new StackLayout ();
 				
 				//find the stacklayout that holds the chosen image and store in currentStack, we need this to find the correct label/entry
@@ -42,7 +44,7 @@ namespace Lisa.Ruben
 				}
 				
 				//find the entry that belongs to the image in the currentStack and store it in chosenLabel
-				foreach (var child in currentStack.Children.OfType<Entry>()) 
+				foreach (var child in currentStack.Children.OfType<Label>()) 
 				{
 					chosenLabel = child;
 				}
@@ -103,32 +105,32 @@ namespace Lisa.Ruben
 			//create new stacklayout to hold the image and label
 			StackLayout stack = new StackLayout();
 
+			//Set the image soure to the file the user just picked
+			var pickedImage = ImageSource.FromStream(() =>
+				{
+					var stream = file.GetStream();
+				//	file.Dispose();
+					return stream;
+				}); 
+
 			//Create the new image
 			Image newPicto = new Image();
 			newPicto.HeightRequest = 256;
 			newPicto.WidthRequest = 300;
 			newPicto.VerticalOptions = LayoutOptions.Center;
-            
-			//Create the new label
-			Entry pictoLabel = new Entry ();
-			pictoLabel.Text = "new picto test";
-			pictoLabel.BackgroundColor = Color.Black;
-			pictoLabel.TextColor = Color.White;
-
-			//Set the image soure to the file the user just picked
-			var pickedImage = ImageSource.FromStream(() =>
-				{
-					var stream = file.GetStream();
-					//file.Dispose();
-					return stream;
-				}); 
-
             newPicto.Source = pickedImage;
 
 			//add the picto to the database
-			Picto p = new Picto ();
-			p.Name = file.Path;
-			database.AddPicto (p);
+			var page = new LabelModalPage (file.Path);
+			await Navigation.PushModalAsync (page);
+
+			//Create the new label
+			Label pictoLabel = new Label ();
+			pictoLabel.BackgroundColor = Color.Black;
+			pictoLabel.TextColor = Color.White;
+			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
+
+			placeholdLabel = pictoLabel;
 
 			//Add a tapgesturerecognizer to the image
 			var tapGestureRecognizer = new TapGestureRecognizer();
@@ -143,6 +145,11 @@ namespace Lisa.Ruben
 			pictoTheek.Children.Add (stack);
 		}
 
+		public static void SetLabelText()
+		{
+			placeholdLabel.Text = labelText;
+		}
+			
 		// Add new picto taken with the camera to the pictotheek
 		async void CreateNewPicto(object sender, EventArgs args)
 		{
@@ -167,15 +174,19 @@ namespace Lisa.Ruben
 
 			//await DisplayAlert("File Location", file.Path, "OK");
 
+			var page = new LabelModalPage (file.Path);
+			await Navigation.PushModalAsync (page);
+
 			//create the new image and entry and the stacklayout to hold them
 			StackLayout stack = new StackLayout();
 			Image takenPhoto = new Image();
-			Entry pictoLabel = new Entry ();
+			Label pictoLabel = new Label ();
 
 			//settings for the label
-			pictoLabel.Text = "taken photo test";
 			pictoLabel.BackgroundColor = Color.Black;
 			pictoLabel.TextColor = Color.White;
+			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
+			placeholdLabel = pictoLabel;
 
 			//settings for the image
 			takenPhoto.HeightRequest = 256;
@@ -186,7 +197,7 @@ namespace Lisa.Ruben
 			takenPhoto.Source = ImageSource.FromStream(() =>
 				{
 					var stream = file.GetStream();
-					//file.Dispose();
+				//	file.Dispose();
 					return stream;
 				});
 
@@ -219,6 +230,11 @@ namespace Lisa.Ruben
 			}
 		}
 
+		void OnDeleteAll(object sender, EventArgs args)
+		{
+			database.DeleteAllPictos ();
+		}
+
 		void GetImagesFromDB()
 		{
 			List<Picto> allImages = (List<Picto>)database.GetAllPictos (); 
@@ -235,13 +251,13 @@ namespace Lisa.Ruben
 				newPicto.VerticalOptions = LayoutOptions.Center;
 				
 				//Create the new label
-				Entry pictoLabel = new Entry ();
-				pictoLabel.Text = "new picto database test";
+				Label pictoLabel = new Label ();
+				pictoLabel.Text = item.Label;
 				pictoLabel.BackgroundColor = Color.Black;
 				pictoLabel.TextColor = Color.White;
+				pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
 				
-				
-				newPicto.Source = item.Name;
+				newPicto.Source = item.Path;
 				
 				//Add a tapgesturerecognizer to the image
 				var tapGestureRecognizer = new TapGestureRecognizer();
@@ -255,17 +271,6 @@ namespace Lisa.Ruben
 				//Add the stacklayout to the pictotheek scrollview
 				pictoTheek.Children.Add (stack);
 			}
-
-		}
-
-		void OnEntryFocus(object sender, EventArgs args)
-		{
-			buttonBar.IsVisible = false;
-		}
-
-		void OnEntryUnfocused(object sender, EventArgs args)
-		{
-			buttonBar.IsVisible = true;
 		}
 	}
 }

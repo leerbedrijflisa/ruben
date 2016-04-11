@@ -90,7 +90,7 @@ namespace Lisa.Ruben
 		}
 
 		//sets the image and label chosen in the pictotheek
-		public void SetImageAndLabel(Image pictotheekImg, Entry pictptheelLabel)
+		public void SetImageAndLabel(Image pictotheekImg, Label pictptheekLabel)
 		{
 			//create stacklayout as placeholder to find the Label
 			StackLayout currentStack = new StackLayout();
@@ -112,7 +112,7 @@ namespace Lisa.Ruben
 				//find the label that belongs to the selectedimage in the currentStack and set the text
 				foreach (Label label in currentStack.Children.OfType<Label>()) 
 				{
-					label.Text = pictptheelLabel.Text;
+					label.Text = pictptheekLabel.Text;
 				}
 			}
 		}

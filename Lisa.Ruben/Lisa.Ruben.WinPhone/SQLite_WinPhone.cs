@@ -6,11 +6,12 @@ using Windows.Storage;
 [assembly: Dependency(typeof(SQLite_WinPhone))]  
 namespace Lisa.Ruben.WinPhone  
 {  
-	public class SQLite_WinPhone: ISQLite  
+	public class SQLite_WinPhone : ISQLite  
 	{  
 		public SQLite_WinPhone()  
 		{  
-		}  
+		} 
+
 		public SQLite.Net.SQLiteConnection GetConnection()  
 		{  
 			var filename = "Student.db3";  
