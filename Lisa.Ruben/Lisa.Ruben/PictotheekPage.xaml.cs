@@ -76,11 +76,20 @@ namespace Lisa.Ruben
 						}
 					}
 				}
-
+				//remove from scrollview
 				pictoTheek.Children.Remove (currentStack);
 				removing = false;
 				removePictoButton.Text="Remove Picto";
 				removePictoButton.BackgroundColor = Color.Default;
+
+				//remove from database
+				foreach (var label in currentStack.Children.OfType<Label>()) 
+				{
+					stepLabel = label;
+				}
+				//get the id of the picto by searching the name and delete it
+				int id = database.GetIdFromName(stepLabel.Text);
+				database.DeletePicto (id);
 			}
 		}
 
@@ -122,6 +131,7 @@ namespace Lisa.Ruben
 
 			//add the picto to the database
 			var page = new LabelModalPage (file.Path);
+
 			await Navigation.PushModalAsync (page);
 
 			//Create the new label
@@ -228,11 +238,6 @@ namespace Lisa.Ruben
 				removePictoButton.Text = "Removing False";
 				removePictoButton.BackgroundColor = Color.Default;
 			}
-		}
-
-		void OnDeleteAll(object sender, EventArgs args)
-		{
-			database.DeleteAllPictos ();
 		}
 
 		void GetImagesFromDB()

@@ -9,7 +9,6 @@ namespace Lisa.Ruben
 	{
 		private SQLiteConnection _sqlconnection;  
 
-
 		public PictotheekDB ()
 		{
 			//Getting conection and Creating table  
@@ -46,5 +45,25 @@ namespace Lisa.Ruben
 		{  
 			_sqlconnection.Insert(picto);  
 		}  
+
+		public bool CheckLabelNameExists(string name)
+		{
+			var results = _sqlconnection.Query<Picto> ("SELECT * FROM Picto WHERE label = ?",name);
+			if (results.Count > 0) 
+			{
+				return true;
+			}
+			return false;
+		}
+
+		public int GetIdFromName(string name)
+		{
+			var results = _sqlconnection.Query<Picto> ("SELECT * FROM Picto WHERE label = ?",name);
+			if (results.Count > 0) 
+			{
+				return results[0].Id;
+			}
+			return 0;
+		}
 	}
 }

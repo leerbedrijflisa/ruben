@@ -16,7 +16,6 @@ namespace Lisa.Ruben
 		{
 			InitializeComponent ();
 			database = new PictotheekDB ();
-			//database.DeleteAllPictos ();
 			//NavigationPage.SetHasNavigationBar(this, false);
 		}
 
@@ -42,8 +41,7 @@ namespace Lisa.Ruben
 			stepLabel.Text = "";
 			stepLabel.BackgroundColor = Color.Black;
 			stepLabel.TextColor = Color.White;
-			//geeft warning maar HorizontalTextAlign werkt niet op android (MissingMethodException)
-			stepLabel.XAlign = TextAlignment.Center;
+			stepLabel.HorizontalTextAlignment = TextAlignment.Center;
 
 			newStack.Children.Add (stepImage);
 			newStack.Children.Add (stepLabel);
@@ -85,7 +83,7 @@ namespace Lisa.Ruben
 			//If removing is disabled open the pictotheek to choose a picture
 			else
 			{
-				await Navigation.PushAsync(pictotheek);
+				await Navigation.PushAsync(pictotheek,false);
 			}
 		}
 
