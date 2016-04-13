@@ -9,7 +9,7 @@
 	        			</StackLayout>
 		        	</StackLayout>
 	        	</ScrollView>
-	        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100" >
+	        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="50" >
 		        	<Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="200"/>
 	        		<Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="200" x:Name="removeButton"/>
 	        	</StackLayout>

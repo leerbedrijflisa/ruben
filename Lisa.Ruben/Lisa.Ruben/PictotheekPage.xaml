@@ -54,10 +54,10 @@
         			</StackLayout>
         		</StackLayout>
     		</ScrollView>
-        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="100" x:Name="buttonBar">
-				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
-				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" HeightRequest="128" VerticalOptions="Center"/>
-				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="150" HeightRequest="128" VerticalOptions="Center" x:Name="removePictoButton"/>
+        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="75" x:Name="buttonBar">
+				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="75" VerticalOptions="Center"/>
+				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" HeightRequest="75" VerticalOptions="Center"/>
+				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="150" HeightRequest="75" VerticalOptions="Center" x:Name="removePictoButton"/>
 	        </StackLayout>
 	   	</StackLayout>
 	</ContentPage.Content>

@@ -16,7 +16,7 @@ namespace Lisa.Ruben
 		{
 			InitializeComponent ();
 			database = new PictotheekDB ();
-			//NavigationPage.SetHasNavigationBar(this, false);
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
 
 		//Creates a new Button and adds it to the scrollview
@@ -34,8 +34,8 @@ namespace Lisa.Ruben
 
 			//settings for the image
 			stepImage.BackgroundColor = Color.Silver;
-			stepImage.HeightRequest = 256;
-			stepImage.WidthRequest = 300;
+			stepImage.WidthRequest = 260;
+			stepImage.HeightRequest = 226;
 
 			//settings for the label
 			stepLabel.Text = "";

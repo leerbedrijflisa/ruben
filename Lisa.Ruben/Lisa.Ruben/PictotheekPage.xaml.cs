@@ -18,7 +18,7 @@ namespace Lisa.Ruben
 			InitializeComponent ();
 			database = new PictotheekDB ();
 			GetImagesFromDB ();
-			//NavigationPage.SetHasNavigationBar(this, false);
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
 
 		//Runs when a user clicks one of the pictos
