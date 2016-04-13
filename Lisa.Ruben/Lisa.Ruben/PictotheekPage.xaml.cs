@@ -99,11 +99,11 @@ namespace Lisa.Ruben
 			await CrossMedia.Current.Initialize();
 
 			//Check if the device can take pictures
-			if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-			{
-				await DisplayAlert("No Camera", ":( No camera available.", "OK");
-				return;
-			}
+			//if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+			//{
+			//	await DisplayAlert("No Camera", ":( No camera available.", "OK");
+			//	return;
+			//}
 
 			//Wait for the user to pick out his file
 			var file = await CrossMedia.Current.PickPhotoAsync ();
@@ -166,11 +166,11 @@ namespace Lisa.Ruben
 			await CrossMedia.Current.Initialize();
 
 			//Check if the device can take pictures
-			if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-			{
-				await DisplayAlert("No Camera", ":( No camera available.", "OK");
-				return;
-			}
+			//if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+			//{
+			//	await DisplayAlert("No Camera", ":( No camera available.", "OK");
+			//	return;
+			//}
 
 			//Wait for the user to take his picture
 			var file = await CrossMedia.Current.TakePhotoAsync (new Plugin.Media.Abstractions.StoreCameraMediaOptions {
