@@ -45,7 +45,7 @@
 	        			<Label Text="chrome" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center" />
 	        		</StackLayout>
 	        		<StackLayout>
-	        			<Image Source="circle.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
+	        			<Image Source="circle.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
@@ -54,10 +54,10 @@
         			</StackLayout>
         		</StackLayout>
     		</ScrollView>
-        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="75" x:Name="buttonBar">
-				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" HeightRequest="75" VerticalOptions="Center"/>
-				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" HeightRequest="75" VerticalOptions="Center"/>
-				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="150" HeightRequest="75" VerticalOptions="Center" x:Name="removePictoButton"/>
+        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="50" x:Name="buttonBar">
+				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" VerticalOptions="Center"/>
+				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" VerticalOptions="Center"/>
+				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="150" VerticalOptions="Center" x:Name="removePictoButton"/>
 	        </StackLayout>
 	   	</StackLayout>
 	</ContentPage.Content>
