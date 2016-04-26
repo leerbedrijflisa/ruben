@@ -11,13 +11,13 @@ namespace Lisa.Ruben.WinPhone
 	{  
 
 		public SQLiteConnection GetConnection()  
-		{  
-			var filename = "Student.db3";  
-			var path = Path.Combine(ApplicationData.Current.LocalFolder.Path, filename);
+		{
+            var filename = "Student.db3";
+            var path = Path.Combine(ApplicationData.Current.LocalFolder.Path, filename);
 
-            //var platfrom = new SQLite.Net.Platform.WindowsPhone8.SQLitePlatformWP8();  
+            //var platfrom = new SQLite.Net.Platform.WindowsPhone8.SQLitePlatformWP8();
             var connection = new SQLiteConnection(path);
-            return (SQLiteConnection)connection;
+            return connection;
         }  
 	}  
 }  

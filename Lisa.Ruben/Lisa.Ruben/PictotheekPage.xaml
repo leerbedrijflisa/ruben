@@ -5,7 +5,7 @@
 			<ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand" x:Name="pictoScroll">
      			<StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="CenterAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
 	    			<StackLayout>
-				       	<Image Source="alien.jpg" WidthRequest="300" HeightRequest="256"  VerticalOptions="Center">
+				       	<Image Source="alien.jpg" WidthRequest="260" HeightRequest="226"  VerticalOptions="Center">
 		       				<Image.GestureRecognizers>
 		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 		       				</Image.GestureRecognizers>
@@ -13,7 +13,7 @@
 	    				<Label Text="alien" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center" />    			
 	        		</StackLayout>
 	        		<StackLayout>	
-	        			<Image Source="levelup.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
+	        			<Image Source="levelup.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center" >
 	        				<Image.GestureRecognizers>
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
@@ -21,7 +21,7 @@
 	        			<Label Text="level up" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
-	        			<Image Source="bloem.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center" >
+	        			<Image Source="bloem.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center" >
 	        				<Image.GestureRecognizers>
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
@@ -29,7 +29,7 @@
 	        			<Label Text="bloem" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
-	        			<Image Source="mario.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
+	        			<Image Source="mario.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
@@ -37,7 +37,7 @@
 	        			<Label Text="mario" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
-	        			<Image Source="chrome.jpg" WidthRequest="300" HeightRequest="256" VerticalOptions="Center">
+	        			<Image Source="chrome.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center">
 	        				<Image.GestureRecognizers>
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
@@ -54,7 +54,7 @@
         			</StackLayout>
         		</StackLayout>
     		</ScrollView>
-        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="50" x:Name="buttonBar">
+        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="75" x:Name="buttonBar">
 				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" VerticalOptions="Center"/>
 				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" VerticalOptions="Center"/>
 				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="150" VerticalOptions="Center" x:Name="removePictoButton"/>

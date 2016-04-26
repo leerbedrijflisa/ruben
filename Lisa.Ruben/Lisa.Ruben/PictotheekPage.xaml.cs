@@ -22,7 +22,7 @@ namespace Lisa.Ruben
 		}
 
 		//Runs when a user clicks one of the pictos
-		void OnPictoChoose(object sender, EventArgs args)
+		async void OnPictoChoose(object sender, EventArgs args)
 		{
 			if (!removing) 
 			{
@@ -30,9 +30,11 @@ namespace Lisa.Ruben
 				Image chosenImage = (Image)sender;
 				Label chosenLabel = new Label ();
 				StackLayout currentStack = new StackLayout ();
-				
-				//find the stacklayout that holds the chosen image and store in currentStack, we need this to find the correct label/entry
-				foreach (StackLayout stack in pictoTheek.Children) 
+
+                System.Diagnostics.Debug.WriteLine(chosenImage.Source);
+
+                //find the stacklayout that holds the chosen image and store in currentStack, we need this to find the correct label/entry
+                foreach (StackLayout stack in pictoTheek.Children) 
 				{
 					foreach (var child in stack.Children.OfType<Image>()) 
 					{
@@ -54,7 +56,7 @@ namespace Lisa.Ruben
 				//set the image and label with the method on the steppage using the chosenImage and chosenLabel
 				stepPage.SetImageAndLabel (chosenImage, chosenLabel);
 				//close the pictotheek
-				Navigation.PopAsync ();
+				await Navigation.PopAsync ();
 			} 
 			else
 			{
@@ -111,14 +113,14 @@ namespace Lisa.Ruben
 			var pickedImage = ImageSource.FromStream(() =>
 				{
 					var stream = file.GetStream();
-					file.Dispose();
+					//file.Dispose();
 					return stream;
 				});
 
 			//Create the new image
 			Image newPicto = new Image();
-			newPicto.HeightRequest = 256;
-			newPicto.WidthRequest = 300;
+			newPicto.HeightRequest = 226;
+			newPicto.WidthRequest = 260;
 			newPicto.VerticalOptions = LayoutOptions.Center;
             newPicto.Source = pickedImage;
 
@@ -185,8 +187,8 @@ namespace Lisa.Ruben
 			placeholdLabel = pictoLabel;
 
 			//settings for the image
-			takenPhoto.HeightRequest = 256;
-			takenPhoto.WidthRequest = 300;
+			takenPhoto.HeightRequest = 226;
+			takenPhoto.WidthRequest = 260;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
 
 			//Set the image soure to the file the user just picked
@@ -237,8 +239,8 @@ namespace Lisa.Ruben
 				
 				//Create the new image
 				Image newPicto = new Image();
-				newPicto.HeightRequest = 256;
-				newPicto.WidthRequest = 300;
+				newPicto.HeightRequest = 226;
+				newPicto.WidthRequest = 260;
 				newPicto.VerticalOptions = LayoutOptions.Center;
 				
 				//Create the new label
