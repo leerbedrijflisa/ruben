@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Plugin.Media;
 using Xamarin.Forms;
 
@@ -53,10 +54,11 @@ namespace Lisa.Ruben
 				
 				//find the root page at the top of the navigationStack
 				MyPage stepPage = (MyPage)Navigation.NavigationStack [0];
-				//set the image and label with the method on the steppage using the chosenImage and chosenLabel
-				stepPage.SetImageAndLabel (chosenImage, chosenLabel);
 				//close the pictotheek
 				await Navigation.PopAsync ();
+				//set the image and label with the method on the steppage using the chosenImage and chosenLabel
+                var stream = ((StreamImageSource)chosenImage.Source).Stream(System.Threading.CancellationToken.None).Result;
+                stepPage.SetImageAndLabel (stream, chosenImage, chosenLabel);
 			} 
 			else
 			{
@@ -109,13 +111,15 @@ namespace Lisa.Ruben
 			//create new stacklayout to hold the image and label
 			StackLayout stack = new StackLayout();
 
-			//Set the image soure to the file the user just picked
-			var pickedImage = ImageSource.FromStream(() =>
-				{
-					var stream = file.GetStream();
-					//file.Dispose();
-					return stream;
-				});
+            //Set the image soure to the file the user just picked
+            var stream = file.GetStream();
+            byte[] buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, (int) stream.Length);
+            //file.Dispose();
+
+            var pickedImage = ImageSource.FromStream(() => {
+                return new MemoryStream(buffer);
+            });
 
 			//Create the new image
 			Image newPicto = new Image();

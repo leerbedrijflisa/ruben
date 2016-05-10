@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -88,7 +89,7 @@ namespace Lisa.Ruben
 		}
 
 		//sets the image and label chosen in the pictotheek
-		public void SetImageAndLabel(Image pictotheekImg, Label pictptheekLabel)
+		public void SetImageAndLabel(Stream streampy, Image pictotheekImg, Label pictptheekLabel)
 		{
 			//create stacklayout as placeholder to find the Label
 			StackLayout currentStack = new StackLayout();
@@ -103,7 +104,9 @@ namespace Lisa.Ruben
 					{
 						currentStack = child;
 						item.BackgroundColor = Color.Transparent;
-						item.Source = pictotheekImg.Source;	
+                        var stream = ((StreamImageSource)pictotheekImg.Source).Stream(System.Threading.CancellationToken.None).Result;
+
+                        item.Source = ImageSource.FromStream(() => streampy);
 					}
 				}
 
