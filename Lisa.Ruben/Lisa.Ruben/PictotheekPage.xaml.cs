@@ -56,9 +56,18 @@ namespace Lisa.Ruben
 				MyPage stepPage = (MyPage)Navigation.NavigationStack [0];
 				//close the pictotheek
 				await Navigation.PopAsync ();
-				//set the image and label with the method on the steppage using the chosenImage and chosenLabel
-                var stream = ((StreamImageSource)chosenImage.Source).Stream(System.Threading.CancellationToken.None).Result;
-                stepPage.SetImageAndLabel (stream, chosenImage, chosenLabel);
+                //set the image and label with the method on the steppage using the chosenImage and chosenLabel
+
+                if (chosenImage.Source is StreamImageSource)
+                {
+                    var stream = ((StreamImageSource)chosenImage.Source).Stream(System.Threading.CancellationToken.None).Result;
+                    stepPage.SetImageAndLabel (chosenImage, chosenLabel, stream);
+
+                }
+                else
+                {
+                    stepPage.SetImageAndLabel(chosenImage, chosenLabel);
+                }
 			} 
 			else
 			{

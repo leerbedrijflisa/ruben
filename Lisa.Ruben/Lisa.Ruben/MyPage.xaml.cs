@@ -89,7 +89,7 @@ namespace Lisa.Ruben
 		}
 
 		//sets the image and label chosen in the pictotheek
-		public void SetImageAndLabel(Stream streampy, Image pictotheekImg, Label pictptheekLabel)
+		public void SetImageAndLabel(Image pictotheekImg, Label pictptheekLabel, Stream streampy = null)
 		{
 			//create stacklayout as placeholder to find the Label
 			StackLayout currentStack = new StackLayout();
@@ -104,9 +104,18 @@ namespace Lisa.Ruben
 					{
 						currentStack = child;
 						item.BackgroundColor = Color.Transparent;
-                        var stream = ((StreamImageSource)pictotheekImg.Source).Stream(System.Threading.CancellationToken.None).Result;
 
-                        item.Source = ImageSource.FromStream(() => streampy);
+                        if (streampy != null)
+                        {
+                            var stream = ((StreamImageSource)pictotheekImg.Source).Stream(System.Threading.CancellationToken.None).Result;
+
+                            item.Source = ImageSource.FromStream(() => streampy);
+                        }
+                        else
+                        {
+                            item.Source = pictotheekImg.Source;
+                        }
+                       
 					}
 				}
 
