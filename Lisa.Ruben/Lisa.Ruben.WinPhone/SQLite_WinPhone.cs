@@ -9,7 +9,6 @@ namespace Lisa.Ruben.WinPhone
 {  
 	public class SQLite_WinPhone : ISQLite  
 	{  
-
 		public SQLiteConnection GetConnection()  
 		{
             var filename = "Student.db3";

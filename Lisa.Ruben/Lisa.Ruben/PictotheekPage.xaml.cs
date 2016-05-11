@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using Plugin.Media;
 using Xamarin.Forms;
+using Lisa.Ruben;
 
 namespace Lisa.Ruben
 {
@@ -62,7 +63,6 @@ namespace Lisa.Ruben
                 {
                     var stream = ((StreamImageSource)chosenImage.Source).Stream(System.Threading.CancellationToken.None).Result;
                     stepPage.SetImageAndLabel (chosenImage, chosenLabel, stream);
-
                 }
                 else
                 {
@@ -129,15 +129,21 @@ namespace Lisa.Ruben
             var pickedImage = ImageSource.FromStream(() => {
                 return new MemoryStream(buffer);
             });
+           
 
-			//Create the new image
-			Image newPicto = new Image();
+
+           //await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream,"test");
+
+
+
+            //Create the new image
+            Image newPicto = new Image();
 			newPicto.HeightRequest = 226;
 			newPicto.WidthRequest = 260;
 			newPicto.VerticalOptions = LayoutOptions.Center;
             newPicto.Source = pickedImage;
 
-			//add the picto to the database
+			//ask for the picto name and add to the database
 			var page = new LabelModalPage (file.Path);
 
 			await Navigation.PushModalAsync (page);
@@ -204,16 +210,17 @@ namespace Lisa.Ruben
 			takenPhoto.WidthRequest = 260;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
 
-			//Set the image soure to the file the user just picked
-			takenPhoto.Source = ImageSource.FromStream(() =>
-				{
-					var stream = file.GetStream();
-				//	file.Dispose();
-					return stream;
-				});
+            var stream = file.GetStream();
+            byte[] buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, (int)stream.Length);
+            //file.Dispose();
 
-			//Add a tapgesturerecognizer to the image
-			var tapGestureRecognizer = new TapGestureRecognizer();
+            takenPhoto.Source = ImageSource.FromStream(() => {
+                return new MemoryStream(buffer);
+            });
+
+            //Add a tapgesturerecognizer to the image
+            var tapGestureRecognizer = new TapGestureRecognizer();
 			tapGestureRecognizer.Tapped += OnPictoChoose;
 			takenPhoto.GestureRecognizers.Add(tapGestureRecognizer);
 
@@ -278,5 +285,5 @@ namespace Lisa.Ruben
 				pictoTheek.Children.Add (stack);
 			}
 		}
-	}
+    }
 }
