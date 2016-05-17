@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Xamarin.Forms;
 
 namespace Lisa.Ruben
@@ -8,12 +9,14 @@ namespace Lisa.Ruben
 	{
 		PictotheekDB database;
 		string pictoPath;
+        Stream stream2;
 
-		public LabelModalPage (string path)
+		public LabelModalPage (string path, Stream stream = null)
 		{
 			InitializeComponent ();
 			database = new PictotheekDB ();
 			pictoPath = path;
+            stream2 = stream;
 		}
 
 		protected override void OnAppearing ()
@@ -30,7 +33,12 @@ namespace Lisa.Ruben
 				Picto p = new Picto ();
 				p.Path = pictoPath;
 				p.Label = newText;
-				database.AddPicto (p);
+                if (stream2 != null)
+                {
+                    await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream2, p.Label);
+                }
+
+                database.AddPicto (p);
 				PictotheekPage.labelText = newText;
 				PictotheekPage.SetLabelText ();
 				await Navigation.PopModalAsync();

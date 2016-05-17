@@ -133,10 +133,9 @@ namespace Lisa.Ruben
             //ask for the picto name and add to the database
             if (Device.OS == TargetPlatform.WinPhone)
             {
-                await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream, "test");
                 string localPath = DependencyService.Get<ISaveToLocalStorage>().GetPath();
+                var page = new LabelModalPage(localPath, stream);
 
-                var page = new LabelModalPage(localPath);
                 await Navigation.PushModalAsync(page);
             }
             else

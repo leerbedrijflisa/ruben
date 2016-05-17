@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Xamarin.Forms;
 
-
 [assembly: Dependency(typeof(SaveToLocalStorage))]
 namespace Lisa.Ruben.WinPhone
 {
