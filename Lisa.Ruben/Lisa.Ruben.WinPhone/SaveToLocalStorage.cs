@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Xamarin.Forms;
 
+
 [assembly: Dependency(typeof(SaveToLocalStorage))]
 namespace Lisa.Ruben.WinPhone
 {
@@ -20,7 +21,17 @@ namespace Lisa.Ruben.WinPhone
             using (Stream outputStream = await storageFile.OpenStreamForWriteAsync())
             {
                 await file.CopyToAsync(outputStream);
+
+
             }
+
+            
+        }
+
+        public string GetPath()
+        {
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            return localFolder.Path;
         }
     }
 }

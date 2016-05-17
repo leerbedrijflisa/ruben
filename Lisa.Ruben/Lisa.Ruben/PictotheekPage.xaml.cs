@@ -4,7 +4,7 @@ using System.Linq;
 using System.IO;
 using Plugin.Media;
 using Xamarin.Forms;
-using Lisa.Ruben;
+
 
 namespace Lisa.Ruben
 {
@@ -132,9 +132,15 @@ namespace Lisa.Ruben
            
 
 
-           //await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream,"test");
+           await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream,"test");
+
+            //string s = DependencyService.Get<ISaveToLocalStorage.G>
 
 
+
+            //ask for the picto name and add to the database
+            var page = new LabelModalPage(file.Path);
+            await Navigation.PushModalAsync(page);
 
             //Create the new image
             Image newPicto = new Image();
@@ -143,10 +149,7 @@ namespace Lisa.Ruben
 			newPicto.VerticalOptions = LayoutOptions.Center;
             newPicto.Source = pickedImage;
 
-			//ask for the picto name and add to the database
-			var page = new LabelModalPage (file.Path);
-
-			await Navigation.PushModalAsync (page);
+			
 
 			//Create the new label
 			Label pictoLabel = new Label ();
