@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 
 namespace Lisa.Ruben
 {
-    interface ISaveToLocalStorage
+   public interface ISaveToLocalStorage
     {
         Task SaveToLocalFolderAsync(Stream file, string fileName);
+        string GetPath();
     }
 }

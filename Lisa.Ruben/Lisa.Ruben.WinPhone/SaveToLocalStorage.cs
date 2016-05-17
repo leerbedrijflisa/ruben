@@ -9,7 +9,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(SaveToLocalStorage))]
 namespace Lisa.Ruben.WinPhone
 {
-    public class SaveToLocalStorage
+    public class SaveToLocalStorage : ISaveToLocalStorage
     {
         public async Task SaveToLocalFolderAsync(Stream file, string fileName)
         {
@@ -21,11 +21,7 @@ namespace Lisa.Ruben.WinPhone
             using (Stream outputStream = await storageFile.OpenStreamForWriteAsync())
             {
                 await file.CopyToAsync(outputStream);
-
-
             }
-
-            
         }
 
         public string GetPath()

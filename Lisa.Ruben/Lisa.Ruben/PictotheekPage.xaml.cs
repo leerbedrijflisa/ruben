@@ -129,18 +129,21 @@ namespace Lisa.Ruben
             var pickedImage = ImageSource.FromStream(() => {
                 return new MemoryStream(buffer);
             });
-           
-
-
-           await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream,"test");
-
-            //string s = DependencyService.Get<ISaveToLocalStorage.G>
-
-
 
             //ask for the picto name and add to the database
-            var page = new LabelModalPage(file.Path);
-            await Navigation.PushModalAsync(page);
+            if (Device.OS == TargetPlatform.WinPhone)
+            {
+                await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream, "test");
+                string localPath = DependencyService.Get<ISaveToLocalStorage>().GetPath();
+
+                var page = new LabelModalPage(localPath);
+                await Navigation.PushModalAsync(page);
+            }
+            else
+            {
+                var page = new LabelModalPage(file.Path);
+                await Navigation.PushModalAsync(page);
+            }
 
             //Create the new image
             Image newPicto = new Image();
