@@ -9,9 +9,9 @@ namespace Lisa.Ruben
 	{
 		private SQLiteConnection _sqlconnection;  
 
+		//Getting conection and Creating table  
 		public PictotheekDB ()
 		{
-			//Getting conection and Creating table  
 			_sqlconnection = DependencyService.Get<ISQLite>().GetConnection();  
 			_sqlconnection.CreateTable<Picto>(); 
 		}
@@ -46,6 +46,7 @@ namespace Lisa.Ruben
 			_sqlconnection.Insert(picto);  
 		}  
 
+        //check if the name already exists in the database
 		public bool CheckLabelNameExists(string name)
 		{
 			var results = _sqlconnection.Query<Picto> ("SELECT * FROM Picto WHERE label = ?",name);
@@ -56,6 +57,7 @@ namespace Lisa.Ruben
 			return false;
 		}
 
+        //returns the id of a picto using the name of the picto
 		public int GetIdFromName(string name)
 		{
 			var results = _sqlconnection.Query<Picto> ("SELECT * FROM Picto WHERE label = ?",name);
@@ -65,5 +67,20 @@ namespace Lisa.Ruben
 			}
 			return 0;
 		}
+
+        //updates the label of a picto after the user has editted it
+        public void ChangeName(int id, string newValue)
+        {
+            var result = _sqlconnection.Query<Picto>("SELECT * FROM Picto WHERE id = ?", id);
+            
+            Picto p = new Picto();
+            p = result[0];
+
+            if (result.Count != 0)
+            {
+                p.Label = newValue;
+                _sqlconnection.Update(p);
+            }
+        }
 	}
 }

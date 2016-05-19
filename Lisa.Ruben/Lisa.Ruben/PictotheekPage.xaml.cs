@@ -151,8 +151,6 @@ namespace Lisa.Ruben
 			newPicto.VerticalOptions = LayoutOptions.Center;
             newPicto.Source = pickedImage;
 
-			
-
 			//Create the new label
 			Label pictoLabel = new Label ();
 			pictoLabel.BackgroundColor = Color.Black;
@@ -215,11 +213,13 @@ namespace Lisa.Ruben
 			takenPhoto.WidthRequest = 260;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
 
+            //turn the file into a stream
             var stream = file.GetStream();
             byte[] buffer = new byte[stream.Length];
             stream.Read(buffer, 0, (int)stream.Length);
             //file.Dispose();
 
+            //store the stream in memory
             takenPhoto.Source = ImageSource.FromStream(() => {
                 return new MemoryStream(buffer);
             });
@@ -269,11 +269,12 @@ namespace Lisa.Ruben
 				newPicto.VerticalOptions = LayoutOptions.Center;
 				
 				//Create the new label
-				Label pictoLabel = new Label ();
+				Entry pictoLabel = new Entry ();
 				pictoLabel.Text = item.Label;
-				pictoLabel.BackgroundColor = Color.Black;
-				pictoLabel.TextColor = Color.White;
+			//	pictoLabel.BackgroundColor = Color.Black;
+			//	pictoLabel.TextColor = Color.White;
 				pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
+                pictoLabel.TextChanged += OnEntryChanged;
 				
 				newPicto.Source = item.Path;
 				
@@ -290,5 +291,12 @@ namespace Lisa.Ruben
 				pictoTheek.Children.Add (stack);
 			}
 		}
+
+        //runs when the user changes the text on the picto label
+        void OnEntryChanged(object sender, TextChangedEventArgs args)
+        {
+            int id = database.GetIdFromName(args.OldTextValue);
+            database.ChangeName(id, args.NewTextValue);
+        }
     }
 }

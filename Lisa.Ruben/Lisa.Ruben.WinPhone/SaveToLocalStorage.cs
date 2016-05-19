@@ -13,20 +13,24 @@ namespace Lisa.Ruben.WinPhone
     {
         public async Task SaveToLocalFolderAsync(Stream file, string fileName)
         {
+            //add mime type to filename
             fileName = fileName + ".jpg";
 
+            //find the localstorage and create an emptyfile
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             StorageFile storageFile = await localFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-            System.Diagnostics.Debug.WriteLine("----------------------------------------------------------");
-            System.Diagnostics.Debug.WriteLine(localFolder);
 
             Stream outputStream = await storageFile.OpenStreamForWriteAsync();
 
+            //set streams to the beginning
             file.Seek(0, SeekOrigin.Begin);
             outputStream.Seek(0, SeekOrigin.Begin);
+
+            //copy the stream into the file
             await file.CopyToAsync(outputStream);
         }
 
+        //returns the localfolder as a string
         public string GetPath()
         {
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;

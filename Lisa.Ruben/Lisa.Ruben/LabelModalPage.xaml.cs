@@ -11,6 +11,7 @@ namespace Lisa.Ruben
 		string pictoPath;
         Stream stream2;
 
+        //contructor
 		public LabelModalPage (string path, Stream stream = null)
 		{
 			InitializeComponent ();
@@ -19,11 +20,13 @@ namespace Lisa.Ruben
             stream2 = stream;
 		}
 
+        //give the entryfocus immediately
 		protected override void OnAppearing ()
 		{
 			modalEntry.Focus ();
 		}
 
+        //when the user click the "enter" button on the keyboard, save the label to the database
 		async void OnEntryComplete(object sender, EventArgs args)
 		{
 			Entry e = (Entry)sender;
