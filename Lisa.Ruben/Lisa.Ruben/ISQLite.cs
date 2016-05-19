@@ -8,4 +8,3 @@ namespace Lisa.Ruben
 		SQLiteConnection GetConnection();  
 	}  
 }
-

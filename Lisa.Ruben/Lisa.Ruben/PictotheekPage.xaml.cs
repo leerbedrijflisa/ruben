@@ -5,14 +5,13 @@ using System.IO;
 using Plugin.Media;
 using Xamarin.Forms;
 
-
 namespace Lisa.Ruben
 {
 	public partial class PictotheekPage : ContentPage
 	{
 		bool removing;
 		public PictotheekDB database;
-		public static Label placeholdLabel;
+		public static Entry placeholdLabel;
 		public static string labelText;
 
 		public PictotheekPage ()
@@ -30,10 +29,8 @@ namespace Lisa.Ruben
 			{
 				//create the new image and entry and the stacklayout to hold them
 				Image chosenImage = (Image)sender;
-				Label chosenLabel = new Label ();
+				Entry chosenLabel = new Entry ();
 				StackLayout currentStack = new StackLayout ();
-
-                System.Diagnostics.Debug.WriteLine(chosenImage.Source);
 
                 //find the stacklayout that holds the chosen image and store in currentStack, we need this to find the correct label/entry
                 foreach (StackLayout stack in pictoTheek.Children) 
@@ -48,7 +45,7 @@ namespace Lisa.Ruben
 				}
 				
 				//find the entry that belongs to the image in the currentStack and store it in chosenLabel
-				foreach (var child in currentStack.Children.OfType<Label>()) 
+				foreach (var child in currentStack.Children.OfType<Entry>()) 
 				{
 					chosenLabel = child;
 				}
@@ -152,9 +149,9 @@ namespace Lisa.Ruben
             newPicto.Source = pickedImage;
 
 			//Create the new label
-			Label pictoLabel = new Label ();
-			pictoLabel.BackgroundColor = Color.Black;
-			pictoLabel.TextColor = Color.White;
+			Entry pictoLabel = new Entry();
+			//pictoLabel.BackgroundColor = Color.Black;
+			//pictoLabel.TextColor = Color.White;
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
 
 			placeholdLabel = pictoLabel;
@@ -200,11 +197,11 @@ namespace Lisa.Ruben
 			//create the new image and entry and the stacklayout to hold them
 			StackLayout stack = new StackLayout();
 			Image takenPhoto = new Image();
-			Label pictoLabel = new Label ();
+			Entry pictoLabel = new Entry();
 
 			//settings for the label
-			pictoLabel.BackgroundColor = Color.Black;
-			pictoLabel.TextColor = Color.White;
+			//pictoLabel.BackgroundColor = Color.Black;
+			//pictoLabel.TextColor = Color.White;
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
 			placeholdLabel = pictoLabel;
 
@@ -277,9 +274,9 @@ namespace Lisa.Ruben
                 pictoLabel.TextChanged += OnEntryChanged;
 				
 				newPicto.Source = item.Path;
-				
-				//Add a tapgesturerecognizer to the image
-				var tapGestureRecognizer = new TapGestureRecognizer();
+
+                //Add a tapgesturerecognizer to the image
+                var tapGestureRecognizer = new TapGestureRecognizer();
 				tapGestureRecognizer.Tapped += OnPictoChoose;
 				newPicto.GestureRecognizers.Add(tapGestureRecognizer);
 				

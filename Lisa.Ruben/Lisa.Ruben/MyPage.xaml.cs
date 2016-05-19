@@ -89,12 +89,12 @@ namespace Lisa.Ruben
 		}
 
 		//sets the image and label chosen in the pictotheek
-		public void SetImageAndLabel(Image pictotheekImg, Label pictptheekLabel, Stream streampy = null)
+		public void SetImageAndLabel(Image pictotheekImg, Entry pictptheekLabel, Stream streampy = null)
 		{
 			//create stacklayout as placeholder to find the Label
 			StackLayout currentStack = new StackLayout();
 
-			//find the currentstack by looking for the selectedimage in the scrollsteps,
+			//find the currentstack by looking for the selectedimage in the scrollsteps
 			foreach (StackLayout child in scrollSteps.Children) 
 			{
 				//set the selected image to the image chosen in the pictotheek
@@ -105,17 +105,18 @@ namespace Lisa.Ruben
 						currentStack = child;
 						item.BackgroundColor = Color.Transparent;
 
+                        //for windows phone only
                         if (streampy != null)
                         {
                             var stream = ((StreamImageSource)pictotheekImg.Source).Stream(System.Threading.CancellationToken.None).Result;
 
                             item.Source = ImageSource.FromStream(() => streampy);
                         }
+                        //ios and android
                         else
                         {
                             item.Source = pictotheekImg.Source;
                         }
-                       
 					}
 				}
 
