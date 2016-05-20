@@ -272,8 +272,15 @@ namespace Lisa.Ruben
 			//	pictoLabel.TextColor = Color.White;
 				pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
                 pictoLabel.TextChanged += OnEntryChanged;
-				
-				newPicto.Source = item.Path;
+
+                if (Device.OS == TargetPlatform.WinPhone)
+                {
+                    newPicto.Source = item.Path + "\\" + item.Label + ".jpg";
+                }
+                else
+                {
+                    newPicto.Source = item.Path;
+                }
 
                 //Add a tapgesturerecognizer to the image
                 var tapGestureRecognizer = new TapGestureRecognizer();
