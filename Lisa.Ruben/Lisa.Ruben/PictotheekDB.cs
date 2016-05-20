@@ -57,8 +57,17 @@ namespace Lisa.Ruben
 			return false;
 		}
 
+        //returns the label of the picto
+        public string GetName(int id)
+        {
+            var results = _sqlconnection.Query<Picto>("SELECT * FROM Picto WHERE id = ?", id);
+            return results[0].Label;
+
+        }
+
+
         //returns the id of a picto using the name of the picto
-		public int GetIdFromName(string name)
+        public int GetIdFromName(string name)
 		{
 			var results = _sqlconnection.Query<Picto> ("SELECT * FROM Picto WHERE label = ?",name);
 			if (results.Count > 0) 
@@ -74,10 +83,10 @@ namespace Lisa.Ruben
             var result = _sqlconnection.Query<Picto>("SELECT * FROM Picto WHERE id = ?", id);
             
             Picto p = new Picto();
-            p = result[0];
 
             if (result.Count != 0)
             {
+                p = result[0];
                 p.Label = newValue;
                 _sqlconnection.Update(p);
             }

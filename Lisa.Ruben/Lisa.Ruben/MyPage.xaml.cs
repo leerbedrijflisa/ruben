@@ -8,9 +8,8 @@ namespace Lisa.Ruben
     public partial class MyPage : ContentPage
     {
 		bool removing;
-		Image selectedImage = new Image();
 		public PictotheekDB database;
-
+		Image selectedImage = new Image();
 		PictotheekPage pictotheek = new PictotheekPage();
 
 		public MyPage ()

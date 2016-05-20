@@ -2,9 +2,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
 using Windows.Storage;
-using Windows.Storage.Streams;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(SaveToLocalStorage))]
@@ -36,6 +34,14 @@ namespace Lisa.Ruben.WinPhone
         {
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             return localFolder.Path;
+        }
+
+        public async void UpdateFileName(string oldName, string newName)
+        {
+            oldName += ".jpg";
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            StorageFile storageFile = await localFolder.GetFileAsync(oldName);
+            await storageFile.RenameAsync(newName);
         }
     }
 }

@@ -234,6 +234,7 @@ namespace Lisa.Ruben
 			pictoTheek.Children.Add (stack);
 		}
 
+        //removes the picto from the pictotheek TODO also remove from local storage
 		void OnRemovePictoClick(object sender, EventArgs args)
 		{
 			removing = !removing;
@@ -250,6 +251,7 @@ namespace Lisa.Ruben
 			}
 		}
 
+        //gets all the stored images from the database when it first opens
 		void GetImagesFromDB()
 		{
 			List<Picto> allImages = (List<Picto>)database.GetAllPictos (); 
@@ -272,6 +274,7 @@ namespace Lisa.Ruben
 			//	pictoLabel.TextColor = Color.White;
 				pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
                 pictoLabel.TextChanged += OnEntryChanged;
+                pictoLabel.Completed += OnEntryComplete;
 
                 if (Device.OS == TargetPlatform.WinPhone)
                 {
@@ -299,8 +302,15 @@ namespace Lisa.Ruben
         //runs when the user changes the text on the picto label
         void OnEntryChanged(object sender, TextChangedEventArgs args)
         {
-            int id = database.GetIdFromName(args.OldTextValue);
-            database.ChangeName(id, args.NewTextValue);
+            //int id = database.GetIdFromName(args.OldTextValue);
+            //database.ChangeName(id, args.NewTextValue);
+            //DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(args.OldTextValue, args.NewTextValue);
+        }
+
+        void OnEntryComplete(object sender, EventArgs args)
+        {
+            Entry e = (Entry)sender;
+            e.Unfocus();
         }
     }
 }
