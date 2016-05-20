@@ -15,7 +15,7 @@ namespace Lisa.Ruben.WinPhone
         public MainPage()
         {
             InitializeComponent();
-            SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
+            SupportedOrientations = SupportedPageOrientation.Landscape;
 
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new Lisa.Ruben.App());

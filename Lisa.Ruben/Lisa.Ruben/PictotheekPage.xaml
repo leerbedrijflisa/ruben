@@ -10,7 +10,7 @@
 		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 		       				</Image.GestureRecognizers>
 		       			</Image>
-	    				<Label Text="alien" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center" />    			
+	    				<Entry Text="alien" VerticalOptions="Center" HorizontalTextAlignment="Center" />    			
 	        		</StackLayout>
 	        		<StackLayout>	
 	        			<Image Source="levelup.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center" >
@@ -18,7 +18,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Label Text="level up" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+	        			<Entry Text="level up" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="bloem.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center" >
@@ -26,7 +26,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Label Text="bloem" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+	        			<Entry Text="bloem" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="mario.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center">
@@ -34,7 +34,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Label Text="mario" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+	        			<Entry Text="mario" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="chrome.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center">
@@ -42,7 +42,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Label Text="chrome" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+	        			<Entry Text="chrome" VerticalOptions="Center" HorizontalTextAlignment="Center" />
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="circle.jpg" WidthRequest="260" HeightRequest="226" VerticalOptions="Center">
@@ -50,14 +50,14 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-        			<Label Text="circle" BackgroundColor="Black" TextColor="White" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+        			<Entry Text="circle" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
         			</StackLayout>
         		</StackLayout>
     		</ScrollView>
         	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="75" x:Name="buttonBar">
-				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="150" VerticalOptions="Center"/>
-				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="150" VerticalOptions="Center"/>
-				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="150" VerticalOptions="Center" x:Name="removePictoButton"/>
+				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="250" VerticalOptions="Center"/>
+				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="250" VerticalOptions="Center"/>
+				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="250" VerticalOptions="Center" x:Name="removePictoButton"/>
 	        </StackLayout>
 	   	</StackLayout>
 	</ContentPage.Content>

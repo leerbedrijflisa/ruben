@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(SaveToLocalStorage))]
@@ -16,7 +17,7 @@ namespace Lisa.Ruben.WinPhone
             //add mime type to filename
             fileName = fileName + ".jpg";
 
-            //find the localstorage and create an emptyfile
+            //find the localstorage and create an empty file
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             StorageFile storageFile = await localFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
 

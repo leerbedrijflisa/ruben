@@ -30,22 +30,28 @@ namespace Lisa.Ruben
 		async void OnEntryComplete(object sender, EventArgs args)
 		{
 			Entry e = (Entry)sender;
+            //check if the lbel name alreadyexists in the database
 			if (!database.CheckLabelNameExists(e.Text))
 			{
+                //create the picto
 				string newText = e.Text;
 				Picto p = new Picto ();
 				p.Path = pictoPath;
 				p.Label = newText;
+
+                //when we have a stream, we are on windows phone, call depencyservice on savetolocalstorage
                 if (stream2 != null)
                 {
                     await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream2, p.Label);
                 }
 
+                //add it to thedatabase, update the labelText, and close the page
                 database.AddPicto (p);
 				PictotheekPage.labelText = newText;
 				PictotheekPage.SetLabelText ();
 				await Navigation.PopModalAsync();
 			} 
+            //name already exists
 			else
 			{
 				await DisplayAlert ("Error","Er is al een Picto met deze naam","Ok");	

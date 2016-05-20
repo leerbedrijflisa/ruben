@@ -245,8 +245,8 @@ namespace Lisa.Ruben
 			}
 			else
 			{
-				removePictoButton.Text = "Removing False";
-				removePictoButton.BackgroundColor = Color.Default;
+				removePictoButton.Text = "Remove Picto";
+				removePictoButton.BackgroundColor = Color.Silver;
 			}
 		}
 
