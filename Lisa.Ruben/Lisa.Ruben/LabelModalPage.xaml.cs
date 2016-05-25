@@ -20,7 +20,7 @@ namespace Lisa.Ruben
             stream2 = stream;
 		}
 
-        //give the entryfocus immediately
+        //give the entry focus immediately
 		protected override void OnAppearing ()
 		{
 			modalEntry.Focus ();
@@ -30,7 +30,7 @@ namespace Lisa.Ruben
 		async void OnEntryComplete(object sender, EventArgs args)
 		{
 			Entry e = (Entry)sender;
-            //check if the lbel name alreadyexists in the database
+            //check if the label name alreadyexists in the database
 			if (!database.CheckLabelNameExists(e.Text))
 			{
                 //create the picto

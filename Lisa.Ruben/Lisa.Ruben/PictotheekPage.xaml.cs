@@ -121,7 +121,6 @@ namespace Lisa.Ruben
             var stream = file.GetStream();
             byte[] buffer = new byte[stream.Length];
             stream.Read(buffer, 0, (int) stream.Length);
-            //file.Dispose();
 
             var pickedImage = ImageSource.FromStream(() => {
                 return new MemoryStream(buffer);
@@ -157,8 +156,6 @@ namespace Lisa.Ruben
 
 			//Create the new label
 			Entry pictoLabel = new Entry();
-			//pictoLabel.BackgroundColor = Color.Black;
-			//pictoLabel.TextColor = Color.White;
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
             if (Device.OS == TargetPlatform.Android)
             {
@@ -202,8 +199,6 @@ namespace Lisa.Ruben
 			if (file == null)
 				return;
 
-			//await DisplayAlert("File Location", file.Path, "OK");
-
 			var page = new LabelModalPage (file.Path);
 			await Navigation.PushModalAsync (page);
 
@@ -213,8 +208,6 @@ namespace Lisa.Ruben
 			Entry pictoLabel = new Entry();
 
 			//settings for the label
-			//pictoLabel.BackgroundColor = Color.Black;
-			//pictoLabel.TextColor = Color.White;
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
 			placeholdLabel = pictoLabel;
             if (Device.OS == TargetPlatform.Android)
@@ -240,7 +233,6 @@ namespace Lisa.Ruben
             var stream = file.GetStream();
             byte[] buffer = new byte[stream.Length];
             stream.Read(buffer, 0, (int)stream.Length);
-            //file.Dispose();
 
             //store the stream in memory
             takenPhoto.Source = ImageSource.FromStream(() => {
@@ -304,8 +296,6 @@ namespace Lisa.Ruben
 				//Create the new label
 				Entry pictoLabel = new Entry ();
 				pictoLabel.Text = item.Label;
-			//	pictoLabel.BackgroundColor = Color.Black;
-			//	pictoLabel.TextColor = Color.White;
 				pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
                 if (Device.OS == TargetPlatform.Android)
                 {
