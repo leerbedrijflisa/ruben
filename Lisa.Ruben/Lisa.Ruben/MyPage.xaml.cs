@@ -35,10 +35,17 @@ namespace Lisa.Ruben
 			//settings for the image
 			stepImage.BackgroundColor = Color.Silver;
 			stepImage.WidthRequest = 260;
-			stepImage.HeightRequest = 226;
+            if (Device.OS == TargetPlatform.Android)
+            {
+                stepImage.HeightRequest = 150;
+            }
+            else
+            {
+                stepImage.HeightRequest = 226;
+            }
 
-			//settings for the label
-			stepLabel.Text = "";
+            //settings for the label
+            stepLabel.Text = "";
 			stepLabel.BackgroundColor = Color.Black;
 			stepLabel.TextColor = Color.White;
 			stepLabel.HorizontalTextAlignment = TextAlignment.Center;

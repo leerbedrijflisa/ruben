@@ -16,7 +16,7 @@
 		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 		       				</Image.GestureRecognizers>
 		       			</Image>
-	    				<Entry Text="alien" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" TextColor="Black"/>    			
+	    				<Entry Text="alien" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black"/>    			
 	        		</StackLayout>
 	        		<StackLayout>	
 	        			<Image Source="levelup.jpg" WidthRequest="260" VerticalOptions="Center" >
