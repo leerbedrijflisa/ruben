@@ -153,8 +153,10 @@ namespace Lisa.Ruben
 			//pictoLabel.BackgroundColor = Color.Black;
 			//pictoLabel.TextColor = Color.White;
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
+            pictoLabel.TextChanged += OnEntryChanged;
+            pictoLabel.Completed += OnEntryComplete;
 
-			placeholdLabel = pictoLabel;
+            placeholdLabel = pictoLabel;
 
 			//Add a tapgesturerecognizer to the image
 			var tapGestureRecognizer = new TapGestureRecognizer();
@@ -204,9 +206,11 @@ namespace Lisa.Ruben
 			//pictoLabel.TextColor = Color.White;
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
 			placeholdLabel = pictoLabel;
+            pictoLabel.TextChanged += OnEntryChanged;
+            pictoLabel.Completed += OnEntryComplete;
 
-			//settings for the image
-			takenPhoto.HeightRequest = 226;
+            //settings for the image
+            takenPhoto.HeightRequest = 226;
 			takenPhoto.WidthRequest = 260;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
 
@@ -302,9 +306,13 @@ namespace Lisa.Ruben
         //runs when the user changes the text on the picto label
         void OnEntryChanged(object sender, TextChangedEventArgs args)
         {
-            //int id = database.GetIdFromName(args.OldTextValue);
-            //database.ChangeName(id, args.NewTextValue);
-            //DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(args.OldTextValue, args.NewTextValue);
+            if (args.OldTextValue != null)
+            {
+                int id = database.GetIdFromName(args.OldTextValue);
+                string fileName = database.GetFileName(id);
+                database.ChangeName(id, args.NewTextValue);
+                DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(fileName, args.NewTextValue);
+            }
         }
 
         void OnEntryComplete(object sender, EventArgs args)

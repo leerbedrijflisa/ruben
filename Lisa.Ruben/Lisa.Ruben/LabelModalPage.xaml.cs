@@ -38,6 +38,7 @@ namespace Lisa.Ruben
 				Picto p = new Picto ();
 				p.Path = pictoPath;
 				p.Label = newText;
+                p.FileName = newText;
 
                 //when we have a stream, we are on windows phone, call depencyservice on savetolocalstorage
                 if (stream2 != null)

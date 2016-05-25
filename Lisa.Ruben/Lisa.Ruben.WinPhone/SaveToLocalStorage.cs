@@ -41,6 +41,7 @@ namespace Lisa.Ruben.WinPhone
             oldName += ".jpg";
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             StorageFile storageFile = await localFolder.GetFileAsync(oldName);
+            newName = newName + ".jpg";
             await storageFile.RenameAsync(newName);
         }
     }

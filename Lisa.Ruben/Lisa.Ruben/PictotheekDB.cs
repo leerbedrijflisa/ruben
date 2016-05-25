@@ -62,7 +62,13 @@ namespace Lisa.Ruben
         {
             var results = _sqlconnection.Query<Picto>("SELECT * FROM Picto WHERE id = ?", id);
             return results[0].Label;
+        }
 
+        //returns the label of the picto
+        public string GetFileName(int id)
+        {
+            var results = _sqlconnection.Query<Picto>("SELECT * FROM Picto WHERE id = ?", id);
+            return results[0].FileName;
         }
 
 
