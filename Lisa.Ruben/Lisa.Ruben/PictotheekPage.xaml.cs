@@ -143,7 +143,14 @@ namespace Lisa.Ruben
 
             //Create the new image
             Image newPicto = new Image();
-			newPicto.HeightRequest = 226;
+            if (Device.OS == TargetPlatform.Android)
+            {
+                newPicto.HeightRequest = 150;
+            }
+            else
+            {
+                newPicto.HeightRequest = 226;
+            }
 			newPicto.WidthRequest = 260;
 			newPicto.VerticalOptions = LayoutOptions.Center;
             newPicto.Source = pickedImage;
@@ -210,6 +217,14 @@ namespace Lisa.Ruben
             pictoLabel.Completed += OnEntryComplete;
 
             //settings for the image
+            if (Device.OS == TargetPlatform.Android)
+            {
+                takenPhoto.HeightRequest = 150;
+            }
+            else
+            {
+                takenPhoto.HeightRequest = 226;
+            }
             takenPhoto.HeightRequest = 226;
 			takenPhoto.WidthRequest = 260;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
@@ -267,8 +282,16 @@ namespace Lisa.Ruben
 				
 				//Create the new image
 				Image newPicto = new Image();
-				newPicto.HeightRequest = 226;
-				newPicto.WidthRequest = 260;
+
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    newPicto.HeightRequest = 150;
+                }
+                else
+                {
+                    newPicto.HeightRequest = 226;
+                }
+                newPicto.WidthRequest = 260;
 				newPicto.VerticalOptions = LayoutOptions.Center;
 				
 				//Create the new label

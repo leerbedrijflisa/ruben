@@ -16,7 +16,7 @@
 		       					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 		       				</Image.GestureRecognizers>
 		       			</Image>
-	    				<Entry Text="alien" VerticalOptions="Center" HorizontalTextAlignment="Center" />    			
+	    				<Entry Text="alien" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" TextColor="Black"/>    			
 	        		</StackLayout>
 	        		<StackLayout>	
 	        			<Image Source="levelup.jpg" WidthRequest="260" VerticalOptions="Center" >
@@ -30,7 +30,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="level up" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+	        			<Entry Text="level up" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="bloem.jpg" WidthRequest="260" VerticalOptions="Center" >
@@ -44,7 +44,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="bloem" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+	        			<Entry Text="bloem" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="mario.jpg" WidthRequest="260" VerticalOptions="Center">
@@ -58,7 +58,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="mario" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+	        			<Entry Text="mario" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black"/>
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="chrome.jpg" WidthRequest="260" VerticalOptions="Center">
@@ -72,7 +72,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-	        			<Entry Text="chrome" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+	        			<Entry Text="chrome" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" />
 	        		</StackLayout>
 	        		<StackLayout>
 	        			<Image Source="circle.jpg" WidthRequest="260" VerticalOptions="Center">
@@ -86,7 +86,7 @@
 	        					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPictoChoose"/>
 	        				</Image.GestureRecognizers>
 	        			</Image>
-        			<Entry Text="circle" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+        			<Entry Text="circle" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black"/>
         			</StackLayout>
         		</StackLayout>
     		</ScrollView>
