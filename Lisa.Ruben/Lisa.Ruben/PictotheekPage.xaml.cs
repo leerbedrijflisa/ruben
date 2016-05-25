@@ -160,6 +160,10 @@ namespace Lisa.Ruben
 			//pictoLabel.BackgroundColor = Color.Black;
 			//pictoLabel.TextColor = Color.White;
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
+            if (Device.OS == TargetPlatform.Android)
+            {
+                pictoLabel.TextColor = Color.Black;
+            }
             pictoLabel.TextChanged += OnEntryChanged;
             pictoLabel.Completed += OnEntryComplete;
 
@@ -213,6 +217,10 @@ namespace Lisa.Ruben
 			//pictoLabel.TextColor = Color.White;
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
 			placeholdLabel = pictoLabel;
+            if (Device.OS == TargetPlatform.Android)
+            {
+                pictoLabel.TextColor = Color.Black;
+            }
             pictoLabel.TextChanged += OnEntryChanged;
             pictoLabel.Completed += OnEntryComplete;
 
@@ -225,7 +233,6 @@ namespace Lisa.Ruben
             {
                 takenPhoto.HeightRequest = 226;
             }
-            takenPhoto.HeightRequest = 226;
 			takenPhoto.WidthRequest = 260;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
 
@@ -300,6 +307,10 @@ namespace Lisa.Ruben
 			//	pictoLabel.BackgroundColor = Color.Black;
 			//	pictoLabel.TextColor = Color.White;
 				pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    pictoLabel.TextColor = Color.Black;
+                }
                 pictoLabel.TextChanged += OnEntryChanged;
                 pictoLabel.Completed += OnEntryComplete;
 
@@ -334,7 +345,10 @@ namespace Lisa.Ruben
                 int id = database.GetIdFromName(args.OldTextValue);
                 string fileName = database.GetFileName(id);
                 database.ChangeName(id, args.NewTextValue);
-                DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(fileName, args.NewTextValue);
+                if (Device.OS == TargetPlatform.WinPhone)
+                {
+                    DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(fileName, args.NewTextValue);
+                }
             }
         }
 
