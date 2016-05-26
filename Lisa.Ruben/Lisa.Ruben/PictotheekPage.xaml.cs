@@ -333,11 +333,11 @@ namespace Lisa.Ruben
             if (args.OldTextValue != null)
             {
                 int id = database.GetIdFromName(args.OldTextValue);
-                string fileName = database.GetFileName(id);
                 database.ChangeName(id, args.NewTextValue);
+                string fileName = database.GetFileName(id);
                 if (Device.OS == TargetPlatform.WinPhone)
                 {
-                    DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(fileName, args.NewTextValue);
+                    DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(args.OldTextValue, args.NewTextValue);
                 }
             }
         }
