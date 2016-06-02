@@ -55,9 +55,17 @@ namespace Lisa.Ruben
 
 			//Add to the scrollview
 			scrollSteps.Children.Add (newStack);
-		}
 
-		async void OnStepSelect(object sender, EventArgs args)
+            double stepScrollViewWidth = scrollSteps.Width+newStack.Width;
+            stepScrollView.WidthRequest = stepScrollViewWidth;
+            ScrollToEndOfStepPage(stepScrollViewWidth, stepScrollView);
+        }
+
+        async void ScrollToEndOfStepPage(double value, ScrollView scroll) {
+            await scroll.ScrollToAsync(value, 0, true);
+        }
+
+        async void OnStepSelect(object sender, EventArgs args)
 		{
 			//Set the selectedImage to the current tapped button and create a label and layout for it
 			selectedImage = (Image)sender;

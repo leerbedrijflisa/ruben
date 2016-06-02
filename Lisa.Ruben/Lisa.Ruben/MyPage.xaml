@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Ruben.MyPage">
     <ContentPage.Content>
 			<StackLayout>
-	        	<ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand">
+	        	<ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand" x:Name="stepScrollView">
 		        	<StackLayout Orientation = "Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="White">
 		        		<StackLayout Orientation = "Horizontal" BackgroundColor="Transparent" x:Name="scrollSteps" Padding="31,0,31,0"  VerticalOptions="Center">
 	        				<!-- dynamicly added images come here -->

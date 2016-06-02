@@ -278,9 +278,9 @@ namespace Lisa.Ruben
 			{
 				//create new stacklayout to hold the image and label
 				StackLayout stack = new StackLayout();
-				
-				//Create the new image
-				Image newPicto = new Image();
+
+                //Create the new image
+                Image newPicto = new Image();
 
                 if (Device.OS == TargetPlatform.Android)
                 {
@@ -292,9 +292,19 @@ namespace Lisa.Ruben
                 }
                 newPicto.WidthRequest = 260;
 				newPicto.VerticalOptions = LayoutOptions.Center;
-				
-				//Create the new label
-				Entry pictoLabel = new Entry ();
+
+
+                //var stream = .GetStream();
+                //byte[] buffer = new byte[stream.Length];
+                //stream.Read(buffer, 0, (int)stream.Length);
+
+                ////store the stream in memory
+                //newPicto.Source = ImageSource.FromStream(() => {
+                //    return new MemoryStream(buffer);
+                //});
+
+                //Create the new label
+                Entry pictoLabel = new Entry ();
 				pictoLabel.Text = item.Label;
 				pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
                 if (Device.OS == TargetPlatform.Android)
@@ -334,7 +344,6 @@ namespace Lisa.Ruben
             {
                 int id = database.GetIdFromName(args.OldTextValue);
                 database.ChangeName(id, args.NewTextValue);
-                string fileName = database.GetFileName(id);
                 if (Device.OS == TargetPlatform.WinPhone)
                 {
                     DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(args.OldTextValue, args.NewTextValue);
