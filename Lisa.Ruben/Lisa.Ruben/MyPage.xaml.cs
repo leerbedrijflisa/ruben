@@ -94,7 +94,7 @@ namespace Lisa.Ruben
             {
                 scrollSteps.Children.Remove(currentStack);
                 removing = false;
-                removeButton.BackgroundColor = Color.Default;
+                removeButton.BackgroundColor = Color.Silver;
                 removeButton.Text = "Remove Step";
             }
             //If removing is disabled open the pictotheek to choose a picture

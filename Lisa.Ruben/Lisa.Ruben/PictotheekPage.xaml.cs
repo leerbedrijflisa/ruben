@@ -293,16 +293,6 @@ namespace Lisa.Ruben
                 newPicto.WidthRequest = 260;
 				newPicto.VerticalOptions = LayoutOptions.Center;
 
-
-                //var stream = .GetStream();
-                //byte[] buffer = new byte[stream.Length];
-                //stream.Read(buffer, 0, (int)stream.Length);
-
-                ////store the stream in memory
-                //newPicto.Source = ImageSource.FromStream(() => {
-                //    return new MemoryStream(buffer);
-                //});
-
                 //Create the new label
                 Entry pictoLabel = new Entry ();
 				pictoLabel.Text = item.Label;
