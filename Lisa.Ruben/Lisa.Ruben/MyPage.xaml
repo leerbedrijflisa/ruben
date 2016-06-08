@@ -12,6 +12,7 @@
 	        	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="75" >
 		        	<Button Text = "Add New Step" HorizontalOptions="End" Clicked="AddNewStep" WidthRequest="250"/>
 	        		<Button Text = "Remove Step" Clicked="OnRemoveButtonClick" WidthRequest="250" x:Name="removeButton"/>
+	        		<Button Text = "Remove All Steps" Clicked="OnRemoveAllButtonClick" WidthRequest="250" x:Name="removeAllButton"/>
 	        	</StackLayout>
 	   	 	</StackLayout>
 	</ContentPage.Content>
