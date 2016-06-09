@@ -49,7 +49,7 @@ namespace Lisa.Ruben
         //check if the name already exists in the database
 		public bool CheckLabelNameExists(string name)
 		{
-			var results = _sqlconnection.Query<Picto> ("SELECT * FROM Picto WHERE label = ?",name);
+			var results = _sqlconnection.Query<Picto> ("SELECT * FROM Picto WHERE FileName = ?", name);
 			if (results.Count > 0) 
 			{
 				return true;

@@ -304,9 +304,10 @@ namespace Lisa.Ruben
                 pictoLabel.TextChanged += OnEntryChanged;
                 pictoLabel.Completed += OnEntryComplete;
 
+                //Get the image source
                 if (Device.OS == TargetPlatform.WinPhone)
                 {
-                    newPicto.Source = item.Path + "\\" + item.Label + ".jpg";
+                    newPicto.Source = item.Path + "\\" + item.FileName + ".jpg";
                 }
                 else
                 {
@@ -334,10 +335,6 @@ namespace Lisa.Ruben
             {
                 int id = database.GetIdFromName(args.OldTextValue);
                 database.ChangeName(id, args.NewTextValue);
-                if (Device.OS == TargetPlatform.WinPhone)
-                {
-                    DependencyService.Get<ISaveToLocalStorage>().UpdateFileName(args.OldTextValue, args.NewTextValue);
-                }
             }
         }
 
