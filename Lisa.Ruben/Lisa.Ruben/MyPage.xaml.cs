@@ -164,19 +164,24 @@ namespace Lisa.Ruben
             }
         }
 
-        void OnRemoveAllButtonClick(object sender, EventArgs args)
+       async void OnRemoveAllButtonClick(object sender, EventArgs args)
         {
 
-            List<StackLayout> allStacks = new List<StackLayout>();
-            foreach (StackLayout stacklayout in scrollSteps.Children)
-            {
-                allStacks.Add(stacklayout);
-            }
+            var answer = await DisplayAlert("Let op!", "Weetu zeker dat u alle stappen wilt verwijderen?", "Ja", "Nee");
 
-            foreach (var item in allStacks)
-            {
-                scrollSteps.Children.Remove(item);
 
+            if (answer)
+            {
+                List<StackLayout> allStacks = new List<StackLayout>();
+                foreach (StackLayout stacklayout in scrollSteps.Children)
+                {
+                    allStacks.Add(stacklayout);
+                }
+
+                foreach (var item in allStacks)
+                {
+                    scrollSteps.Children.Remove(item);
+                }
             }
         }
     }

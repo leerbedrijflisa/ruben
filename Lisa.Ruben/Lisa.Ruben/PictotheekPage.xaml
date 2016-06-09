@@ -91,9 +91,9 @@
         		</StackLayout>
     		</ScrollView>
         	<StackLayout Orientation="Horizontal" BackgroundColor="Silver" HeightRequest="75" x:Name="buttonBar">
-				<Button Text = "Add New Picto" Clicked="AddNewPicto" WidthRequest="250" VerticalOptions="Center"/>
-				<Button Text = "Create New Picto" Clicked="CreateNewPicto" WidthRequest="250" VerticalOptions="Center"/>
-				<Button Text = "Remove Picto" Clicked="OnRemovePictoClick" WidthRequest="250" VerticalOptions="Center" x:Name="removePictoButton"/>
+				<Button Text = "Voeg Picto Toe" Clicked="AddNewPicto" WidthRequest="250" VerticalOptions="Center" FontSize="19"/>
+				<Button Text = "Maak Nieuwe Picto" Clicked="CreateNewPicto" WidthRequest="250" VerticalOptions="Center" FontSize="19"/>
+				<Button Text = "Verwijder Picto" Clicked="OnRemovePictoClick" WidthRequest="250" VerticalOptions="Center" x:Name="removePictoButton" FontSize="19"/>
 	        </StackLayout>
 	   	</StackLayout>
 	</ContentPage.Content>
