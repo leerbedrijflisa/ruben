@@ -89,8 +89,7 @@ namespace Lisa.Ruben
 				//remove from scrollview
 				pictoTheek.Children.Remove (currentStack);
 				removing = false;
-				removePictoButton.Text="Remove Picto";
-				removePictoButton.BackgroundColor = Color.Default;
+				removePictoButton.BackgroundColor = Color.Silver;
 
 				//remove from database
 				foreach (var label in currentStack.Children.OfType<Label>()) 
@@ -199,13 +198,33 @@ namespace Lisa.Ruben
 			if (file == null)
 				return;
 
-			var page = new LabelModalPage (file.Path);
-			await Navigation.PushModalAsync (page);
+            //create the new image and entry and the stacklayout to hold them
+            StackLayout stack = new StackLayout();
+            Image takenPhoto = new Image();
+            Entry pictoLabel = new Entry();
 
-			//create the new image and entry and the stacklayout to hold them
-			StackLayout stack = new StackLayout();
-			Image takenPhoto = new Image();
-			Entry pictoLabel = new Entry();
+            //turn the file into a stream
+            var stream = file.GetStream();
+            byte[] buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, (int)stream.Length);
+
+            //store the stream in memory
+            takenPhoto.Source = ImageSource.FromStream(() => {
+                return new MemoryStream(buffer);
+            });
+
+            if (Device.OS == TargetPlatform.WinPhone)
+            {
+                string localPath = DependencyService.Get<ISaveToLocalStorage>().GetPath();
+                var page = new LabelModalPage(localPath, stream);
+
+                await Navigation.PushModalAsync(page);
+            }
+            else
+            {
+                var page = new LabelModalPage (file.Path);
+			    await Navigation.PushModalAsync (page);
+            }
 
 			//settings for the label
 			pictoLabel.HorizontalTextAlignment = TextAlignment.Center;
@@ -214,6 +233,7 @@ namespace Lisa.Ruben
             {
                 pictoLabel.TextColor = Color.Black;
             }
+
             pictoLabel.TextChanged += OnEntryChanged;
             pictoLabel.Completed += OnEntryComplete;
 
@@ -228,17 +248,7 @@ namespace Lisa.Ruben
             }
 			takenPhoto.WidthRequest = 260;
 			takenPhoto.VerticalOptions = LayoutOptions.Center;
-
-            //turn the file into a stream
-            var stream = file.GetStream();
-            byte[] buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, (int)stream.Length);
-
-            //store the stream in memory
-            takenPhoto.Source = ImageSource.FromStream(() => {
-                return new MemoryStream(buffer);
-            });
-
+ 
             //Add a tapgesturerecognizer to the image
             var tapGestureRecognizer = new TapGestureRecognizer();
 			tapGestureRecognizer.Tapped += OnPictoChoose;
@@ -259,12 +269,10 @@ namespace Lisa.Ruben
 
 			if (removing) 
 			{
-				removePictoButton.Text = "Removing True";
 				removePictoButton.BackgroundColor = Color.Red;
 			}
 			else
 			{
-				removePictoButton.Text = "Remove Picto";
 				removePictoButton.BackgroundColor = Color.Silver;
 			}
 		}
@@ -290,6 +298,7 @@ namespace Lisa.Ruben
                 {
                     newPicto.HeightRequest = 226;
                 }
+
                 newPicto.WidthRequest = 260;
 				newPicto.VerticalOptions = LayoutOptions.Center;
 

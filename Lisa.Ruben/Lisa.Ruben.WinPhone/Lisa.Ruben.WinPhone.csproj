@@ -141,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SplashScreenImage.jpg" />
-    <Content Include="alien.jpg" />
     <Content Include="Assets\BadgeLogo.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SplashScreen.png" />
@@ -149,12 +148,6 @@
     <Content Include="Assets\SquareTile71x71.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\WideLogo.png" />
-    <Content Include="bender.jpg" />
-    <Content Include="bloem.jpg" />
-    <Content Include="chrome.jpg" />
-    <Content Include="circle.jpg" />
-    <Content Include="levelup.jpg" />
-    <Content Include="mario.jpg" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">

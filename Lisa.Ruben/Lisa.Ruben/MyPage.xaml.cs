@@ -95,7 +95,6 @@ namespace Lisa.Ruben
                 scrollSteps.Children.Remove(currentStack);
                 removing = false;
                 removeButton.BackgroundColor = Color.Silver;
-                removeButton.Text = "Remove Step";
             }
             //If removing is disabled open the pictotheek to choose a picture
             else
@@ -154,20 +153,18 @@ namespace Lisa.Ruben
             //If removing is enabled, change the text and backgroundcolor according to the value
             if (removing)
             {
-                removeButton.Text = "Removing true";
                 removeButton.BackgroundColor = Color.Red;
             }
             else
             {
-                removeButton.Text = "Remove Step";
-                removeButton.BackgroundColor = Color.Default;
+                removeButton.BackgroundColor = Color.Silver;
             }
         }
 
        async void OnRemoveAllButtonClick(object sender, EventArgs args)
         {
 
-            var answer = await DisplayAlert("Let op!", "Weetu zeker dat u alle stappen wilt verwijderen?", "Ja", "Nee");
+            var answer = await DisplayAlert("Let op!", "Weet u zeker dat u alle stappen wilt verwijderen?", "Ja", "Nee");
 
 
             if (answer)

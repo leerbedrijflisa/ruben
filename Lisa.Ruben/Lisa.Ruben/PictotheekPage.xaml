@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Ruben.PictotheekPage">
 	<ContentPage.Content>
-		<StackLayout>
+		<StackLayout BackgroundColor="White">
 			<ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand" x:Name="pictoScroll">
      			<StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="CenterAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
 	    		   <!-- dynamicly added pictos come here -->	
