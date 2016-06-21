@@ -69,7 +69,7 @@ namespace Lisa.Ruben
 			else
 			{
 				Image selectedImage = (Image)sender;
-				Label stepLabel = new Label ();
+				Entry stepEntry = new Entry ();
 				StackLayout currentStack = new StackLayout();
 
 				//find the current stacklayout in the step scrollview that contains the sender image
@@ -92,12 +92,12 @@ namespace Lisa.Ruben
 				removePictoButton.BackgroundColor = Color.Silver;
 
 				//remove from database
-				foreach (var label in currentStack.Children.OfType<Label>()) 
+				foreach (var label in currentStack.Children.OfType<Entry>()) 
 				{
-					stepLabel = label;
+					stepEntry = label;
 				}
 				//get the id of the picto by searching the name and delete it
-				int id = database.GetIdFromName(stepLabel.Text);
+				int id = database.GetIdFromName(stepEntry.Text);
 				database.DeletePicto (id);
 			}
 		}

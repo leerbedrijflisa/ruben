@@ -30,34 +30,34 @@ namespace Lisa.Ruben
 		{
 			Entry e = (Entry)sender;
             //check if the label name alreadyexists in the database
-            if (e.Text == "")
+            if (e.Text == "" || e.Text == null)
             {
                 await DisplayAlert("Error", "Voer a.u.b. een naam in", "Ok");
                 e.Focus();
             }
 			else if (!database.CheckLabelNameExists(e.Text))
 			{
-                AddNewPictoLabel(e.Text);
+                AddNewPictoLabel(e.Text, e.Text);
             }
             //name already exists
             else
 			{
+                string newText = "";
                 while (database.CheckLabelNameExists(e.Text))
                 {
-                    e.Text += "1";
+                    newText = e.Text + "1";
                 }
         
-                AddNewPictoLabel(e.Text);
+                AddNewPictoLabel(e.Text, newText);
             }
 		}
 
-        void AddNewPictoLabel(string text)
+        async void AddNewPictoLabel(string newText, string oldText)
         {
             //create the picto
-            string newText = e.Text;
             Picto p = new Picto();
             p.Path = pictoPath;
-            p.Label = newText;
+            p.Label = oldText;
             p.FileName = newText;
 
             //when we have a stream, we are on windows phone, call depencyservice on savetolocalstorage
@@ -68,7 +68,7 @@ namespace Lisa.Ruben
 
             //add it to thedatabase, update the labelText, and close the page
             database.AddPicto(p);
-            PictotheekPage.labelText = newText;
+            PictotheekPage.labelText = oldText;
             PictotheekPage.SetLabelText();
             await Navigation.PopModalAsync();
         }
