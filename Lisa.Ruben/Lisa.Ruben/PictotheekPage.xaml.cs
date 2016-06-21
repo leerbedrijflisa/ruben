@@ -176,9 +176,18 @@ namespace Lisa.Ruben
 
 			//Add the stacklayout to the pictotheek scrollview
 			pictoTheek.Children.Add (stack);
-		}
 
-		public static void SetLabelText()
+            double stepScrollViewWidth = pictoScroll.Width + stack.Width;
+            pictoScroll.WidthRequest = stepScrollViewWidth;
+            ScrollToEndOfStepPage(stepScrollViewWidth, pictoScroll);
+        }
+
+        async void ScrollToEndOfStepPage(double value, ScrollView scroll)
+        {
+            await scroll.ScrollToAsync(value, 0, true);
+        }
+
+        public static void SetLabelText()
 		{
 			placeholdLabel.Text = labelText;
 		}
@@ -260,7 +269,11 @@ namespace Lisa.Ruben
 
 			//Add the stacklayout to the pictotheek scrollview
 			pictoTheek.Children.Add (stack);
-		}
+
+            double stepScrollViewWidth = pictoScroll.Width + stack.Width;
+            pictoScroll.WidthRequest = stepScrollViewWidth;
+            ScrollToEndOfStepPage(stepScrollViewWidth, pictoScroll);
+        }
 
         //removes the picto from the pictotheek TODO also remove from local storage
 		void OnRemovePictoClick(object sender, EventArgs args)
