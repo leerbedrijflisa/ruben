@@ -30,33 +30,47 @@ namespace Lisa.Ruben
 		{
 			Entry e = (Entry)sender;
             //check if the label name alreadyexists in the database
-			if (!database.CheckLabelNameExists(e.Text))
+            if (e.Text == "")
+            {
+                await DisplayAlert("Error", "Voer a.u.b. een naam in", "Ok");
+                e.Focus();
+            }
+			else if (!database.CheckLabelNameExists(e.Text))
 			{
-                //create the picto
-				string newText = e.Text;
-				Picto p = new Picto ();
-				p.Path = pictoPath;
-				p.Label = newText;
-                p.FileName = newText;
-
-                //when we have a stream, we are on windows phone, call depencyservice on savetolocalstorage
-                if (stream2 != null)
-                {
-                    await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream2, p.Label);
-                }
-
-                //add it to thedatabase, update the labelText, and close the page
-                database.AddPicto (p);
-				PictotheekPage.labelText = newText;
-				PictotheekPage.SetLabelText ();
-				await Navigation.PopModalAsync();
-			} 
+                AddNewPictoLabel(e.Text);
+            }
             //name already exists
-			else
+            else
 			{
-				await DisplayAlert ("Error","Er is al een Picto met deze naam","Ok");	
-				e.Focus ();
-			}
+                while (database.CheckLabelNameExists(e.Text))
+                {
+                    e.Text += "1";
+                }
+        
+                AddNewPictoLabel(e.Text);
+            }
 		}
+
+        void AddNewPictoLabel(string text)
+        {
+            //create the picto
+            string newText = e.Text;
+            Picto p = new Picto();
+            p.Path = pictoPath;
+            p.Label = newText;
+            p.FileName = newText;
+
+            //when we have a stream, we are on windows phone, call depencyservice on savetolocalstorage
+            if (stream2 != null)
+            {
+                await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream2, p.Label);
+            }
+
+            //add it to thedatabase, update the labelText, and close the page
+            database.AddPicto(p);
+            PictotheekPage.labelText = newText;
+            PictotheekPage.SetLabelText();
+            await Navigation.PopModalAsync();
+        }
 	}
 }
