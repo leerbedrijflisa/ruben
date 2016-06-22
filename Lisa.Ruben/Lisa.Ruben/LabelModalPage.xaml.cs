@@ -42,13 +42,15 @@ namespace Lisa.Ruben
             //name already exists
             else
 			{
-                string newText = "";
-                while (database.CheckLabelNameExists(e.Text))
+                int i = 0;
+                string newText = e.Text;
+                while (database.CheckLabelNameExists(newText))
                 {
-                    newText = e.Text + "1";
+                    newText = e.Text + i;
+                    i++;
                 }
         
-                AddNewPictoLabel(e.Text, newText);
+                AddNewPictoLabel(newText, e.Text);
             }
 		}
 
