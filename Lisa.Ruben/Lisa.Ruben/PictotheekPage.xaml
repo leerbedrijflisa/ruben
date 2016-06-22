@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="White">
 			<ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand" x:Name="pictoScroll">
-     			<StackLayout Orientation = "Horizontal" BackgroundColor="White" VerticalOptions="CenterAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
+     			<StackLayout Orientation = "Horizontal" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" Padding="15,15,0,20"  x:Name="pictoTheek">
 	    		   <!-- dynamicly added pictos come here -->	
         	</StackLayout>
     		</ScrollView>

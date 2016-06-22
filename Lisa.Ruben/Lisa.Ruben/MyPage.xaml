@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Ruben.MyPage">
     <ContentPage.Content>
-			<StackLayout>
+			<StackLayout BackgroundColor="White">
 	        	<ScrollView Orientation="Horizontal" VerticalOptions="FillAndExpand" x:Name="stepScrollView">
-		        	<StackLayout Orientation = "Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="White">
+		        	<StackLayout Orientation = "Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
 		        		<StackLayout Orientation = "Horizontal" BackgroundColor="Transparent" x:Name="scrollSteps" Padding="31,0,31,0"  VerticalOptions="Center">
 	        				<!-- dynamicly added images come here -->
 	        			</StackLayout>

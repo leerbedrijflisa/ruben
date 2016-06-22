@@ -37,7 +37,14 @@ namespace Lisa.Ruben
             }
 			else if (!database.CheckLabelNameExists(e.Text))
 			{
-                AddNewPictoLabel(e.Text, e.Text);
+                if (!CheckMore20Chars(e.Text))
+                {
+                    AddNewPictoLabel(e.Text, e.Text);
+                }
+                else {
+                    await DisplayAlert("Error", "Gebruik maximaal 20 tekens.", "Ok");
+                    e.Focus();
+                }
             }
             //name already exists
             else
@@ -49,8 +56,15 @@ namespace Lisa.Ruben
                     newText = e.Text + i;
                     i++;
                 }
-        
-                AddNewPictoLabel(newText, e.Text);
+
+                if (!CheckMore20Chars(e.Text))
+                {
+                    AddNewPictoLabel(newText, e.Text);
+                }
+                else {
+                    await DisplayAlert("Error", "Gebruik maximaal 20 tekens.", "Ok");
+                    e.Focus();
+                }
             }
 		}
 
@@ -73,6 +87,14 @@ namespace Lisa.Ruben
             PictotheekPage.labelText = oldText;
             PictotheekPage.SetLabelText();
             await Navigation.PopModalAsync();
+        }
+
+        bool CheckMore20Chars(string text) {
+            if (text.Length > 20)
+            {
+                return true;
+            }
+            return false;
         }
 	}
 }
