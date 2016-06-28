@@ -66,7 +66,7 @@ namespace Lisa.Ruben
                     e.Focus();
                 }
             }
-		}
+        }
 
         async void AddNewPictoLabel(string newText, string oldText)
         {
@@ -79,7 +79,7 @@ namespace Lisa.Ruben
             //when we have a stream, we are on windows phone, call depencyservice on savetolocalstorage
             if (stream2 != null)
             {
-                await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream2, p.Label);
+                await DependencyService.Get<ISaveToLocalStorage>().SaveToLocalFolderAsync(stream2, p.FileName);
             }
 
             //add it to thedatabase, update the labelText, and close the page
@@ -87,6 +87,7 @@ namespace Lisa.Ruben
             PictotheekPage.labelText = oldText;
             PictotheekPage.SetLabelText();
             await Navigation.PopModalAsync();
+            PictotheekPage.ScrollToEndOfStepPage(PictotheekPage.stepScrollViewWidth, PictotheekPage.tScrollView);
         }
 
         bool CheckMore20Chars(string text) {

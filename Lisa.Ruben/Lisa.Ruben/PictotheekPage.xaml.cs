@@ -10,9 +10,13 @@ namespace Lisa.Ruben
 	public partial class PictotheekPage : ContentPage
 	{
 		bool removing;
+
 		public PictotheekDB database;
-		public static Entry placeholdLabel;
+
+        public static double stepScrollViewWidth;
+        public static Entry placeholdLabel;
 		public static string labelText;
+        public static ScrollView tScrollView;
 
 		public PictotheekPage ()
 		{
@@ -177,14 +181,13 @@ namespace Lisa.Ruben
 			//Add the stacklayout to the pictotheek scrollview
 			pictoTheek.Children.Add (stack);
 
-            double stepScrollViewWidth = pictoScroll.Width + stack.Width;
-            pictoScroll.WidthRequest = stepScrollViewWidth;
-            ScrollToEndOfStepPage(stepScrollViewWidth, pictoScroll);
+            tScrollView = pictoScroll;
+            stepScrollViewWidth = pictoTheek.Width + stack.Width;
         }
 
-        async void ScrollToEndOfStepPage(double value, ScrollView scroll)
+        public async static void ScrollToEndOfStepPage(double value, ScrollView view)
         {
-            await scroll.ScrollToAsync(value, 0, true);
+            await view.ScrollToAsync(value, 0, false);
         }
 
         public static void SetLabelText()
@@ -270,9 +273,8 @@ namespace Lisa.Ruben
 			//Add the stacklayout to the pictotheek scrollview
 			pictoTheek.Children.Add (stack);
 
-            double stepScrollViewWidth = pictoScroll.Width + stack.Width;
-            pictoScroll.WidthRequest = stepScrollViewWidth;
-            ScrollToEndOfStepPage(stepScrollViewWidth, pictoScroll);
+            tScrollView = pictoScroll;
+            stepScrollViewWidth = pictoTheek.Width + stack.Width;
         }
 
         //removes the picto from the pictotheek TODO also remove from local storage

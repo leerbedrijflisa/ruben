@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{261e9afe-e02c-4f4c-91da-c8647a3331db}" Title="Lisa.Ruben.WinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Lisa.Ruben.WinPhone author" Description="Sample description" Publisher="Lisa.Ruben.WinPhone" PublisherID="{1ecb3dd1-6599-4bb3-bb98-bf761aba061c}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+  <App xmlns="" ProductID="{261e9afe-e02c-4f4c-91da-c8647a3331db}" Title="Ruben" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Lisa.Ruben.WinPhone author" Description="Sample description" Publisher="Lisa.Ruben.WinPhone" PublisherID="{1ecb3dd1-6599-4bb3-bb98-bf761aba061c}">
+    <IconPath IsRelative="true" IsResource="false">icon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -20,10 +20,10 @@
     <Tokens>
       <PrimaryToken TokenID="PhoneApp1Token" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">icon.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>Lisa.Ruben.WinPhone</Title>
+          <BackgroundImageURI IsRelative="true" IsResource="false">icon.png</BackgroundImageURI>
+          <Title>Ruben</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>

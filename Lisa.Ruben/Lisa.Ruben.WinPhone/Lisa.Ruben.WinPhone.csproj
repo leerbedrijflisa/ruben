@@ -140,6 +140,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Assets\BadgeLogo.png" />
     <Content Include="Assets\Logo.png" />
