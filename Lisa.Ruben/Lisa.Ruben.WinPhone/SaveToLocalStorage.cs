@@ -36,6 +36,7 @@ namespace Lisa.Ruben.WinPhone
             return localFolder.Path;
         }
 
+        //renames an already existing picto, oldname is used to find the picto
         public async void UpdateFileName(string oldName, string newName)
         {
             oldName += ".jpg";

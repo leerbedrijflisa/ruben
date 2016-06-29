@@ -60,6 +60,8 @@ namespace Lisa.Ruben
 				await Navigation.PopAsync ();
                 //set the image and label with the method on the steppage using the chosenImage and chosenLabel
 
+                //when the image is a streaming imageSource, this means we are on winphone, 
+                //an extra step is required to convert to stream
                 if (chosenImage.Source is StreamImageSource)
                 {
                     var stream = ((StreamImageSource)chosenImage.Source).Stream(System.Threading.CancellationToken.None).Result;
@@ -72,6 +74,7 @@ namespace Lisa.Ruben
 			} 
 			else
 			{
+                //create the views to hold the image and label
 				Image selectedImage = (Image)sender;
 				Entry stepEntry = new Entry ();
 				StackLayout currentStack = new StackLayout();
@@ -114,6 +117,7 @@ namespace Lisa.Ruben
 			//Wait for the user to pick out his file
 			var file = await CrossMedia.Current.PickPhotoAsync ();
 
+            //no file is chosen, return (back button clicked)
 			if (file == null)
 				return;
 
@@ -125,11 +129,13 @@ namespace Lisa.Ruben
             byte[] buffer = new byte[stream.Length];
             stream.Read(buffer, 0, (int) stream.Length);
 
+            //convert the stream back to an imagesource
             var pickedImage = ImageSource.FromStream(() => {
                 return new MemoryStream(buffer);
             });
 
             //ask for the picto name and add to the database
+            //on winphone we need a different path
             if (Device.OS == TargetPlatform.WinPhone)
             {
                 string localPath = DependencyService.Get<ISaveToLocalStorage>().GetPath();
@@ -164,9 +170,12 @@ namespace Lisa.Ruben
             {
                 pictoLabel.TextColor = Color.Black;
             }
+
+            //add events to the entry
             pictoLabel.TextChanged += OnEntryChanged;
             pictoLabel.Completed += OnEntryComplete;
 
+            //store te label in a temporary variable
             placeholdLabel = pictoLabel;
 
 			//Add a tapgesturerecognizer to the image
@@ -185,11 +194,13 @@ namespace Lisa.Ruben
             stepScrollViewWidth = pictoTheek.Width + stack.Width;
         }
 
+        //this function
         public async static void ScrollToEndOfStepPage(double value, ScrollView view)
         {
             await view.ScrollToAsync(value, 0, false);
         }
 
+        //sets the labeltext taken from the placeholder
         public static void SetLabelText()
 		{
 			placeholdLabel.Text = labelText;
@@ -207,6 +218,7 @@ namespace Lisa.Ruben
 				SaveToAlbum = true
 			});
 
+            //no picture was taken, return (back button clicked)
 			if (file == null)
 				return;
 
@@ -225,6 +237,8 @@ namespace Lisa.Ruben
                 return new MemoryStream(buffer);
             });
 
+            //ask for the picto name and add to the database
+            //on winphone we need a different path
             if (Device.OS == TargetPlatform.WinPhone)
             {
                 string localPath = DependencyService.Get<ISaveToLocalStorage>().GetPath();
@@ -246,6 +260,7 @@ namespace Lisa.Ruben
                 pictoLabel.TextColor = Color.Black;
             }
 
+            //add events to the entry
             pictoLabel.TextChanged += OnEntryChanged;
             pictoLabel.Completed += OnEntryComplete;
 
@@ -282,6 +297,7 @@ namespace Lisa.Ruben
 		{
 			removing = !removing;
 
+            //when we are in removing state, make button color red, else silver
 			if (removing) 
 			{
 				removePictoButton.BackgroundColor = Color.Red;
@@ -325,6 +341,8 @@ namespace Lisa.Ruben
                 {
                     pictoLabel.TextColor = Color.Black;
                 }
+
+                //add events to the entry
                 pictoLabel.TextChanged += OnEntryChanged;
                 pictoLabel.Completed += OnEntryComplete;
 
@@ -355,6 +373,7 @@ namespace Lisa.Ruben
         //runs when the user changes the text on the picto label
         void OnEntryChanged(object sender, TextChangedEventArgs args)
         {
+            //when thereis new text entered, get the right picto form the database, and change the name
             if (args.OldTextValue != null)
             {
                 int id = database.GetIdFromName(args.OldTextValue);
@@ -362,6 +381,7 @@ namespace Lisa.Ruben
             }
         }
 
+        //runs when the user clicks enter on the keyboard, remove focus from entry
         void OnEntryComplete(object sender, EventArgs args)
         {
             Entry e = (Entry)sender;

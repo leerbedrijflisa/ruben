@@ -29,16 +29,19 @@ namespace Lisa.Ruben
 		async void OnEntryComplete(object sender, EventArgs args)
 		{
 			Entry e = (Entry)sender;
-            //check if the label name alreadyexists in the database
+            //check if the user has entered a name
             if (e.Text == "" || e.Text == null)
             {
                 await DisplayAlert("Error", "Voer a.u.b. een naam in", "Ok");
                 e.Focus();
             }
-			else if (!database.CheckLabelNameExists(e.Text))
+            //check if the label name alreadyexists in the database
+            else if (!database.CheckLabelNameExists(e.Text))
 			{
+                //check if there are not more than 20 chars
                 if (!CheckMore20Chars(e.Text))
                 {
+                    //add the picto label
                     AddNewPictoLabel(e.Text, e.Text);
                 }
                 else {
@@ -51,23 +54,27 @@ namespace Lisa.Ruben
 			{
                 int i = 0;
                 string newText = e.Text;
+                //add a number to the file name and check if it exists
                 while (database.CheckLabelNameExists(newText))
                 {
                     newText = e.Text + i;
                     i++;
                 }
-
+                //check if there are not more than 20 chars
                 if (!CheckMore20Chars(e.Text))
                 {
                     AddNewPictoLabel(newText, e.Text);
                 }
-                else {
+                else //elsedisplay a warning
+                {
                     await DisplayAlert("Error", "Gebruik maximaal 20 tekens.", "Ok");
                     e.Focus();
                 }
             }
         }
 
+        //this function runs when the user has changed thelabel into a valid name
+        //it adds the new name to the database, and scrolls the page to the end
         async void AddNewPictoLabel(string newText, string oldText)
         {
             //create the picto
@@ -90,6 +97,7 @@ namespace Lisa.Ruben
             PictotheekPage.ScrollToEndOfStepPage(PictotheekPage.stepScrollViewWidth, PictotheekPage.tScrollView);
         }
 
+        //this function return true when 'text' has more then 20 chars, false when it doesnt
         bool CheckMore20Chars(string text) {
             if (text.Length > 20)
             {

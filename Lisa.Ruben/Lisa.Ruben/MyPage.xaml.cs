@@ -51,22 +51,26 @@ namespace Lisa.Ruben
             stepLabel.TextColor = Color.White;
             stepLabel.HorizontalTextAlignment = TextAlignment.Center;
 
+            //add image and label to the stacklayout
             newStack.Children.Add(stepImage);
             newStack.Children.Add(stepLabel);
 
             //Add to the scrollview
             scrollSteps.Children.Add(newStack);
 
+            //expand the width of the scrollview to hold the extr picto
             double stepScrollViewWidth = scrollSteps.Width + newStack.Width;
             stepScrollView.WidthRequest = stepScrollViewWidth;
             ScrollToEndOfStepPage(stepScrollViewWidth, stepScrollView);
         }
 
+        //this function scroll to the end of the scrollview
         async void ScrollToEndOfStepPage(double value, ScrollView scroll)
         {
             await scroll.ScrollToAsync(value, 0, true);
         }
-
+        
+        //this function runs when the user has added a step, and taps it
         async void OnStepSelect(object sender, EventArgs args)
         {
             //Set the selectedImage to the current tapped button and create a label and layout for it
@@ -161,11 +165,11 @@ namespace Lisa.Ruben
             }
         }
 
+        //this function runs when the user clicks the button "verwijder alle stappen", 
+        //it displays a warning, if yes, all the steps are removed
        async void OnRemoveAllButtonClick(object sender, EventArgs args)
         {
-
             var answer = await DisplayAlert("Let op!", "Weet u zeker dat u alle stappen wilt verwijderen?", "Ja", "Nee");
-
 
             if (answer)
             {
