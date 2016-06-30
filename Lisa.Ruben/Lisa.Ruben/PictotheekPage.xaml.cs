@@ -129,23 +129,20 @@ namespace Lisa.Ruben
             byte[] buffer = new byte[stream.Length];
             stream.Read(buffer, 0, (int) stream.Length);
 
-            //convert the stream back to an imagesource
-            var pickedImage = ImageSource.FromStream(() => {
-                return new MemoryStream(buffer);
-            });
-
+            string tImageFile = await DependencyService.Get<ISaveToLocalStorage>().WriteStreamToFile(stream);
+            var pickedImage = ImageSource.FromFile(tImageFile);
             //ask for the picto name and add to the database
             //on winphone we need a different path
             if (Device.OS == TargetPlatform.WinPhone)
             {
                 string localPath = DependencyService.Get<ISaveToLocalStorage>().GetPath();
-                var page = new LabelModalPage(localPath, stream);
+                var page = new LabelModalPage(localPath, this, stream);
 
                 await Navigation.PushModalAsync(page);
             }
             else
             {
-                var page = new LabelModalPage(file.Path);
+                var page = new LabelModalPage(file.Path, this);
                 await Navigation.PushModalAsync(page);
             }
 
@@ -232,23 +229,23 @@ namespace Lisa.Ruben
             byte[] buffer = new byte[stream.Length];
             stream.Read(buffer, 0, (int)stream.Length);
 
-            //store the stream in memory
-            takenPhoto.Source = ImageSource.FromStream(() => {
-                return new MemoryStream(buffer);
-            });
+            string tImageFile = await DependencyService.Get<ISaveToLocalStorage>().WriteStreamToFile(stream);
+            var pickedImage = ImageSource.FromFile(tImageFile);
+            //ask for the picto name and add to the database
+            //on winphone we need a different path
 
             //ask for the picto name and add to the database
             //on winphone we need a different path
             if (Device.OS == TargetPlatform.WinPhone)
             {
                 string localPath = DependencyService.Get<ISaveToLocalStorage>().GetPath();
-                var page = new LabelModalPage(localPath, stream);
+                var page = new LabelModalPage(localPath, this, stream);
 
                 await Navigation.PushModalAsync(page);
             }
             else
             {
-                var page = new LabelModalPage (file.Path);
+                var page = new LabelModalPage (file.Path, this);
 			    await Navigation.PushModalAsync (page);
             }
 
@@ -309,7 +306,7 @@ namespace Lisa.Ruben
 		}
 
         //gets all the stored images from the database when it first opens
-		void GetImagesFromDB()
+		public void GetImagesFromDB()
 		{
 			List<Picto> allImages = (List<Picto>)database.GetAllPictos (); 
 
@@ -386,6 +383,20 @@ namespace Lisa.Ruben
         {
             Entry e = (Entry)sender;
             e.Unfocus();
+        }
+
+        public void RemoveAllPictos ()
+        {
+            List<StackLayout> allStacks = new List<StackLayout>();
+            foreach (StackLayout stacklayout in pictoTheek.Children)
+            {
+                allStacks.Add(stacklayout);
+            }
+
+            foreach (var item in allStacks)
+            {
+                pictoTheek.Children.Remove(item);
+            }
         }
     }
 }

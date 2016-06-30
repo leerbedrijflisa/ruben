@@ -9,5 +9,7 @@ namespace Lisa.Ruben
         Task SaveToLocalFolderAsync(Stream file, string fileName);
         string GetPath();
         void UpdateFileName(string oldName, string newName);
+
+        Task<string> WriteStreamToFile(Stream stream);
     }
 }

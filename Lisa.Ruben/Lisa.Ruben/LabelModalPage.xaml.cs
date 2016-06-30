@@ -6,15 +6,17 @@ namespace Lisa.Ruben
 {
 	public partial class LabelModalPage : ContentPage
 	{
+        PictotheekPage pictoPage;
 		PictotheekDB database;
 		string pictoPath;
         Stream stream2;
 
         //contructor
-		public LabelModalPage (string path, Stream stream = null)
+		public LabelModalPage (string path, PictotheekPage page, Stream stream = null)
 		{
 			InitializeComponent ();
 			database = new PictotheekDB ();
+            pictoPage = page;
 			pictoPath = path;
             stream2 = stream;
 		}
@@ -93,6 +95,8 @@ namespace Lisa.Ruben
             database.AddPicto(p);
             PictotheekPage.labelText = oldText;
             PictotheekPage.SetLabelText();
+            pictoPage.RemoveAllPictos();
+            pictoPage.GetImagesFromDB();
             await Navigation.PopModalAsync();
             PictotheekPage.ScrollToEndOfStepPage(PictotheekPage.stepScrollViewWidth, PictotheekPage.tScrollView);
         }

@@ -47,5 +47,19 @@ namespace Lisa.Ruben.WinPhone
             File.SetAttributes(path, System.IO.FileAttributes.Normal);
             await storageFile.RenameAsync(newName);
         }
+
+        public async Task<string> WriteStreamToFile(Stream stream)
+        {
+            byte[] fileBytes = new byte[stream.Length];
+            stream.Read(fileBytes, 0, fileBytes.Length);
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            StorageFile sampleFile = await localFolder.CreateFileAsync("file.jpg", CreationCollisionOption.GenerateUniqueName);
+            File.SetAttributes(sampleFile.Path, System.IO.FileAttributes.Normal);
+            using (Stream file = File.OpenWrite(sampleFile.Path))
+            {
+                file.Write(fileBytes, 0, fileBytes.Length);
+            }
+            return sampleFile.Path;
+        }
     }
 }
